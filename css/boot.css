@@ -1,75 +1,160 @@
-/* Welcome / login screen */
+/* Boot splash and login screen. */
+
+/* ---------- shared brand lockup ---------- */
+.brand { display: inline-flex; align-items: flex-start; gap: 10px; }
+.brand-flag { display: block; flex: 0 0 auto; }
+.brand-flag svg { width: 100%; height: 100%; display: block; }
+.brand-text { display: flex; flex-direction: column; align-items: flex-end; }
+.brand-name {
+  color: #fff; font-weight: 700; letter-spacing: -1.5px; line-height: .92;
+  display: inline-flex; align-items: flex-start;
+}
+.brand-name sup {
+  color: #ff5b1a; font-weight: 700; margin-left: 3px;
+  font-size: .42em; line-height: 1; letter-spacing: 0;
+}
+.brand-sub {
+  color: #fff; font-style: italic; font-weight: 700;
+  margin-top: 2px; letter-spacing: .2px;
+}
+
+/* ---------- 1. boot splash ---------- */
+.splash {
+  position: fixed; inset: 0; z-index: 9500;
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transition: opacity .5s ease;
+}
+.splash.is-leaving { opacity: 0; pointer-events: none; }
+
+.splash-center { display: flex; flex-direction: column; align-items: center; }
+
+.splash-brand .brand-flag { width: 78px; height: 68px; }
+.splash-brand .brand-name { font-size: 54px; }
+.splash-brand .brand-sub { font-size: 16px; }
+
+/* Classic three-block progress marquee in a sunken trough. */
+.splash-bar {
+  position: relative; overflow: hidden;
+  width: 190px; height: 18px; margin-top: 42px;
+  border: 2px solid #c8c8c8; border-radius: 9px;
+  background: #0a0a0a;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.9);
+}
+.splash-bar-blocks {
+  position: absolute; top: 3px; left: 0; height: 10px; width: 46px;
+  background:
+    linear-gradient(90deg,
+      #2f6fd8 0 12px, transparent 12px 17px,
+      #2f6fd8 17px 29px, transparent 29px 34px,
+      #2f6fd8 34px 46px);
+  animation: splash-march 2.1s linear infinite;
+}
+@keyframes splash-march {
+  from { transform: translateX(-52px); }
+  to   { transform: translateX(190px); }
+}
+
+.splash-hint {
+  position: absolute; left: 58px; bottom: 44px; margin: 0;
+  color: #fff; font-size: 11px; line-height: 1.55;
+}
+.splash-mark {
+  position: absolute; right: 58px; bottom: 42px; margin: 0;
+  color: #fff; font-size: 21px; font-weight: 700; font-style: italic;
+  letter-spacing: -.5px;
+}
+.splash-mark sup { font-size: 9px; font-style: normal; vertical-align: super; }
+
+/* ---------- 2. login screen ---------- */
 .boot {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(180deg, #5a7edc 0%, #4a6fd4 42%, #4067cd 58%, #5a7edc 100%);
-  z-index: 9000;
+  position: fixed; inset: 0; z-index: 9000;
+  display: flex; flex-direction: column;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg, #4c78d8 0%, #4470d2 45%, #3f6acd 55%, #4a76d6 100%);
+  background-color: #4470d2;
   transition: opacity .45s ease;
 }
 .boot.is-leaving { opacity: 0; pointer-events: none; }
 
 .boot-bar { flex: 0 0 auto; position: relative; }
-.boot-bar-top { height: 22%; border-bottom: 1px solid rgba(255,255,255,.35); }
-.boot-bar-top::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: -3px;
-  height: 2px; background: rgba(255,255,255,.12);
+.boot-bar-top {
+  height: 13%;
+  background: linear-gradient(180deg, #14459f, #1d55b8);
+  border-bottom: 1px solid rgba(255,255,255,.45);
+  box-shadow: 0 3px 0 rgba(255,255,255,.1);
 }
 .boot-bar-bottom {
-  height: 18%;
-  border-top: 1px solid rgba(255,255,255,.35);
-  display: flex; align-items: center; justify-content: center;
+  height: 13%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 26px;
+  background: linear-gradient(180deg, #1d55b8, #14459f);
+  border-top: 1px solid rgba(255,255,255,.45);
+  box-shadow: 0 -3px 0 rgba(255,255,255,.1);
 }
-.boot-bar-bottom::before {
-  content: ""; position: absolute; left: 0; right: 0; top: 2px;
-  height: 2px; background: rgba(255,255,255,.12);
-}
-.boot-hint { color: #fff; font-size: 13px; text-shadow: 0 1px 2px rgba(0,0,0,.4); }
 
 .boot-body {
   flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  padding: 0 6%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 5%;
 }
-.boot-left { flex: 1 1 0; display: flex; flex-direction: column; align-items: flex-end; padding-right: 40px; }
-.boot-right { flex: 1 1 0; display: flex; justify-content: flex-start; padding-left: 40px; }
-
-.boot-divider { width: 1px; align-self: stretch; margin: 6% 0; background: rgba(255,255,255,.4); }
-
-.boot-logo { display: flex; align-items: flex-start; gap: 10px; }
-.boot-logo-flag { width: 58px; height: 50px; display: block; }
-.boot-logo-text {
-  font-size: 44px; font-weight: 700; color: #fff; letter-spacing: -1px;
-  text-shadow: 0 2px 5px rgba(0,0,0,.35);
-  line-height: 1;
+.boot-left {
+  flex: 1 1 0; display: flex; flex-direction: column;
+  align-items: center; padding-right: 46px;
 }
-.boot-logo-text sup { font-size: 18px; color: #ff8a3d; font-weight: 700; margin-left: 2px; }
-.boot-logo-sub {
-  color: #fff; font-size: 13px; font-weight: 700; margin-top: 4px;
-  text-shadow: 0 1px 3px rgba(0,0,0,.4); align-self: flex-end; padding-right: 8px;
+.boot-right { flex: 1 1 0; display: flex; justify-content: flex-start; padding-left: 46px; }
+.boot-divider { width: 1px; align-self: stretch; margin: 8% 0; background: rgba(255,255,255,.45); }
+
+.boot-brand .brand-flag { width: 56px; height: 49px; }
+.boot-brand .brand-name { font-size: 38px; text-shadow: 0 2px 5px rgba(0,0,0,.35); }
+.boot-brand .brand-sub { font-size: 11px; }
+
+.boot-prompt {
+  margin: 26px 0 0; color: #fff; font-size: 14px;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4);
 }
 
 .boot-user {
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  padding: 10px 18px; border-radius: 6px; transition: background .15s;
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 16px; border-radius: 5px; transition: background .15s;
 }
 .boot-user:hover, .boot-user:focus-visible { background: rgba(255,255,255,.14); outline: none; }
 .boot-user-pic {
-  width: 66px; height: 66px; display: block; border-radius: 4px;
-  border: 3px solid #d9e6ff; box-shadow: 0 2px 8px rgba(0,0,0,.35);
-  overflow: hidden; background: #cfe0ff;
+  width: 58px; height: 58px; display: block; flex: 0 0 58px;
+  border: 3px solid #e8f0ff; border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.4); overflow: hidden; background: #cfe0ff;
 }
-.boot-user-meta { display: flex; flex-direction: column; align-items: center; }
-.boot-user-name { color: #fff; font-size: 20px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,.4); }
-.boot-user-role { color: #cfe0ff; font-size: 11px; font-weight: 700; }
+.boot-user-pic svg { width: 100%; height: 100%; display: block; }
+.boot-user-meta { display: flex; flex-direction: column; align-items: flex-start; }
+.boot-user-name {
+  color: #fff; font-size: 21px; font-weight: 700; letter-spacing: .5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,.45);
+}
+.boot-user-role { color: #d3e3ff; font-size: 11px; font-weight: 700; }
 
-@media (max-width: 700px) {
+.boot-restart {
+  display: flex; align-items: center; gap: 9px;
+  color: #fff; font-size: 12px; text-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+.boot-restart:hover { text-decoration: underline; }
+.boot-restart-icon { width: 22px; height: 22px; display: block; flex: 0 0 22px; }
+.boot-restart-icon svg { width: 100%; height: 100%; display: block; }
+
+.boot-note {
+  margin: 0; text-align: right; color: #cfe0ff; font-size: 11px; line-height: 1.7;
+}
+
+@media (max-width: 760px) {
   .boot-body { flex-direction: column; gap: 26px; padding: 0 20px; }
   .boot-left, .boot-right { align-items: center; justify-content: center; padding: 0; }
-  .boot-divider { width: 60%; height: 1px; margin: 0; }
-  .boot-logo-text { font-size: 34px; }
+  .boot-divider { width: 62%; height: 1px; margin: 0; }
+  .boot-brand .brand-name { font-size: 30px; }
+  .boot-note { display: none; }
+  .splash-brand .brand-name { font-size: 36px; }
+  .splash-brand .brand-flag { width: 58px; height: 50px; }
+  .splash-hint { left: 20px; bottom: 24px; }
+  .splash-mark { right: 20px; bottom: 22px; font-size: 16px; }
 }

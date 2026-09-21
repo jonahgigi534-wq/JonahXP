@@ -1,0 +1,54 @@
+/* Custom cursors, drawn as inline SVG data URIs.
+
+   These are original redraws in the style of the era's pointers — the real
+   Windows cursors are Microsoft assets and are not shipped here. Each URI
+   ends with an x/y hotspot, then a keyword fallback for browsers that
+   reject the image. */
+
+:root {
+  /* Standard arrow: white body, black outline, soft drop shadow. */
+  --cur-arrow: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M5 2.5 L5 23.4 L10.3 18.4 L13.6 26.6 L17.7 24.9 L14.4 16.9 L21.5 16.6 Z" fill="%23000" opacity=".35" transform="translate(1.2,1.2)"/><path d="M5 2.5 L5 23.4 L10.3 18.4 L13.6 26.6 L17.7 24.9 L14.4 16.9 L21.5 16.6 Z" fill="%23fff" stroke="%23000" stroke-width="1.4" stroke-linejoin="round"/></svg>') 4 3;
+
+  /* Link / clickable hand. */
+  --cur-hand: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><g transform="translate(1,1)" opacity=".35"><path d="M11 4.5a1.9 1.9 0 0 1 3.8 0v7.2h1V9.4a1.8 1.8 0 0 1 3.6 0v2.4h1v-1.5a1.75 1.75 0 0 1 3.5 0v1.6h.9a1.7 1.7 0 0 1 1.7 1.7v4.6c0 4.6-3 8.3-7.6 8.3h-2.3c-4.3 0-6.7-2.6-8.2-6.2l-2-4.7a1.8 1.8 0 0 1 3-1.9l1.6 2Z" fill="%23000"/></g><path d="M11 4.5a1.9 1.9 0 0 1 3.8 0v7.2h1V9.4a1.8 1.8 0 0 1 3.6 0v2.4h1v-1.5a1.75 1.75 0 0 1 3.5 0v1.6h.9a1.7 1.7 0 0 1 1.7 1.7v4.6c0 4.6-3 8.3-7.6 8.3h-2.3c-4.3 0-6.7-2.6-8.2-6.2l-2-4.7a1.8 1.8 0 0 1 3-1.9l1.6 2Z" fill="%23fff" stroke="%23000" stroke-width="1.4" stroke-linejoin="round"/></svg>') 12 3;
+
+  /* Text I-beam. */
+  --cur-text: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g stroke="%23fff" stroke-width="3.4" stroke-linecap="round"><path d="M12 4.5v15M8.6 4.5h6.8M8.6 19.5h6.8"/></g><g stroke="%23000" stroke-width="1.5" stroke-linecap="round"><path d="M12 4.5v15M8.6 4.5h6.8M8.6 19.5h6.8"/></g></svg>') 12 12;
+
+  /* Busy hourglass, used while the shell is booting. */
+  --cur-wait: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M10 3h12v5.5l-4.4 7.5 4.4 7.5V29H10v-5.5l4.4-7.5L10 8.5Z" fill="%23fff" stroke="%23000" stroke-width="1.6" stroke-linejoin="round"/><path d="M12.4 5.2h7.2v2.9L16 14.1l-3.6-6Z" fill="%232f7ede"/><path d="M16 18.2l3.6 6v2.6h-7.2v-2.6Z" fill="%232f7ede"/></svg>') 10 3;
+}
+
+/* Everything gets the arrow by default; interactive bits get the hand, the
+   way the classic shell did (it used the arrow far more widely than the web). */
+html, body, .screen, .win, .wallpaper, .taskbar, .start-menu {
+  cursor: var(--cur-arrow), default;
+}
+
+button, a, .dicon, .card, .task-btn, .sm-item, .proj-side-btn,
+.win-btn, .tb-btn, .win-menu-item, .detail-back, .detail-btn,
+.boot-user, .sm-foot-btn, .splash-restart {
+  cursor: var(--cur-hand), pointer;
+}
+
+input, textarea, .notepad, .win-address-text, .detail-panel p, .about p {
+  cursor: var(--cur-text), text;
+}
+
+.tb-btn[disabled], .win-menu-item.is-disabled {
+  cursor: var(--cur-arrow), default;
+}
+
+/* Title bars and resize grips keep their own affordances. */
+.win-title { cursor: var(--cur-arrow), default; }
+.win-resize-e  { cursor: ew-resize; }
+.win-resize-s  { cursor: ns-resize; }
+.win-resize-se { cursor: nwse-resize; }
+
+.is-booting, .is-booting * { cursor: var(--cur-wait), progress; }
+
+/* Touch devices get the native pointer back. */
+@media (hover: none) {
+  html, body, .screen, .win, .wallpaper, .taskbar, .start-menu,
+  button, a, .dicon, .card { cursor: auto; }
+}

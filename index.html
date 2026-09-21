@@ -5,27 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JonahXP</title>
 <meta name="description" content="Jonah — developer portfolio. Desktop apps, machine learning, and embedded systems.">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/boot.css">
-<link rel="stylesheet" href="css/desktop.css">
-<link rel="stylesheet" href="css/window.css">
-<link rel="stylesheet" href="css/taskbar.css">
-<link rel="stylesheet" href="css/apps.css">
+<link rel="stylesheet" href="css/base.css?v=2">
+<link rel="stylesheet" href="css/cursors.css?v=2">
+<link rel="stylesheet" href="css/boot.css?v=2">
+<link rel="stylesheet" href="css/desktop.css?v=2">
+<link rel="stylesheet" href="css/window.css?v=2">
+<link rel="stylesheet" href="css/taskbar.css?v=2">
+<link rel="stylesheet" href="css/apps.css?v=2">
 </head>
-<body>
+<body class="is-booting">
 
-<!-- Login / welcome screen -->
-<div id="boot" class="boot">
+<!-- 1. Boot splash -->
+<div id="splash" class="splash">
+  <div class="splash-center">
+    <div class="splash-brand" id="splashBrand"></div>
+    <div class="splash-bar"><span class="splash-bar-blocks"></span></div>
+  </div>
+  <p class="splash-hint">For the best experience<br>Enter Full Screen (F11)</p>
+  <p class="splash-mark">Portfolio<sup>&reg;</sup></p>
+</div>
+
+<!-- 2. Login / welcome screen -->
+<div id="boot" class="boot" hidden>
   <div class="boot-bar boot-bar-top"></div>
+
   <div class="boot-body">
     <div class="boot-left">
-      <div class="boot-logo">
-        <span class="boot-logo-flag" id="bootFlag"></span>
-        <span class="boot-logo-text">Jonah<sup>xp</sup></span>
-      </div>
-      <div class="boot-logo-sub">Developer</div>
+      <div class="boot-brand" id="bootBrand"></div>
+      <p class="boot-prompt">To begin, click on Jonah to log in</p>
     </div>
+
     <div class="boot-divider"></div>
+
     <div class="boot-right">
       <button class="boot-user" id="bootUser">
         <span class="boot-user-pic" id="bootPic"></span>
@@ -36,20 +47,22 @@
       </button>
     </div>
   </div>
+
   <div class="boot-bar boot-bar-bottom">
-    <span class="boot-hint">Click the user icon to begin</span>
+    <button class="boot-restart" id="bootRestart">
+      <span class="boot-restart-icon" id="bootRestartIcon"></span>
+      Restart JonahXP
+    </button>
+    <p class="boot-note">
+      After you log on, the desktop is yours to explore.<br>
+      Every window is a real project.
+    </p>
   </div>
 </div>
 
-<!-- Desktop -->
+<!-- 3. Desktop -->
 <div id="screen" class="screen" hidden>
-  <div class="wallpaper" aria-hidden="true">
-    <div class="wp-sky"></div>
-    <div class="wp-clouds"></div>
-    <div class="wp-hill"></div>
-    <div class="wp-hill2"></div>
-    <div class="wp-wordmark">JONAH</div>
-  </div>
+  <div class="wallpaper" aria-hidden="true"></div>
 
   <div class="icons" id="desktopIcons"></div>
   <div id="windows" class="windows"></div>
@@ -69,14 +82,15 @@
   <div class="start-menu" id="startMenu" hidden></div>
 </div>
 
-<script src="js/icons.js"></script>
-<script src="js/data.js"></script>
-<script src="js/windows.js"></script>
-<script src="js/apps.js"></script>
-<script src="js/desktop.js"></script>
-<script src="js/taskbar.js"></script>
-<script src="js/startmenu.js"></script>
-<script src="js/boot.js"></script>
-<script src="js/main.js"></script>
+<script src="js/icons.js?v=2"></script>
+<script src="js/brand.js?v=2"></script>
+<script src="js/data.js?v=2"></script>
+<script src="js/windows.js?v=2"></script>
+<script src="js/apps.js?v=2"></script>
+<script src="js/desktop.js?v=2"></script>
+<script src="js/taskbar.js?v=2"></script>
+<script src="js/startmenu.js?v=2"></script>
+<script src="js/boot.js?v=2"></script>
+<script src="js/main.js?v=2"></script>
 </body>
 </html>
