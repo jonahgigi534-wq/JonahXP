@@ -68,13 +68,19 @@ Categories are defined in the `filters` array in the same file.
 name spans roughly 11-87% of its width, so `css/desktop.css` picks a layout
 by screen shape:
 
-- **16:9 and wider** -- `cover`, shifted to 42% so the name centres in the crop.
-- **Narrower than ~1.56:1** (3:2, tablets, phones) -- fit to width, pin to
+It is shown zoomed in by `--wp-zoom` (1.12), which crops the sides further:
+
+- **7:4 and wider** -- cover x zoom, anchored at 44% so the name centres.
+- **Narrower** (16:10, 3:2, tablets, phones) -- fit to width x zoom, pin to
   the bottom, and extend the sky above with a gradient sampled from the
   photo's top edge, feathered across the seam.
 
-To replace it, keep the same dimensions and drop in a new file; if the
-aspect changes, update `--wp-h` (height / width, in `vw`) in `css/desktop.css`.
+At these settings the name stays fully in frame from 21:9 down to a phone.
+If you raise `--wp-zoom`, the edges of the name are the first thing to go;
+lower the `7/4` breakpoint's aspect in step to compensate.
+
+To replace the photo, keep the same dimensions and drop in a new file; if
+the aspect changes, update `--wp-ratio` (height / width) in `css/desktop.css`.
 
 `scripts/make_wallpaper.py` still generates the older procedural SVG
 (`assets/wallpaper.svg`). It is no longer referenced by the site.
@@ -104,7 +110,10 @@ The speaker in the system tray toggles mute, and the choice is remembered in
 
 ## The boot sequence
 
-`js/boot.js` runs splash -> login -> desktop. The splash holds for
+`js/boot.js` runs splash -> login -> welcome -> desktop. Clicking the user
+tile swaps the login screen for a single "welcome" line for `WELCOME_MS`
+(2.2s), then the desktop cross-fades in underneath and the start-up chime
+plays. The splash holds for
 `SPLASH_MS` (2.6s) and is skipped on repeat visits within the same tab, via
 a `sessionStorage` flag. "Restart JonahXP" on the login screen replays it.
 

@@ -8,7 +8,10 @@
   const B = window.XPBrand;
 
   const SPLASH_MS = 2600;   // how long the marquee runs
+  const WELCOME_MS = 2200;  // how long "welcome" holds before the desktop
   const FADE_MS = 500;      // must match the CSS transition
+
+  let entering = false;
 
   const $ = (id) => document.getElementById(id);
 
@@ -39,15 +42,30 @@
     }, FADE_MS);
   }
 
-  /* Click the user tile -> desktop. */
+  /* Click the user tile -> "welcome" -> desktop.
+     The desktop is revealed underneath and the welcome screen fades off it,
+     so the two cross-fade rather than cutting through black. */
   function enter() {
+    if (entering) return;
+    entering = true;
+
     // First real gesture of the session: this is where audio becomes legal.
+    // The context stays running, so the chime can wait for the desktop.
     XPAudio.unlock();
-    XPAudio.play('startup');
+
     const boot = $('boot');
-    boot.classList.add('is-leaving');
-    $('screen').hidden = false;
-    setTimeout(() => { boot.hidden = true; }, FADE_MS);
+    boot.classList.add('is-welcome');
+
+    setTimeout(() => {
+      $('screen').hidden = false;
+      boot.classList.add('is-leaving');
+      XPAudio.play('startup');
+      setTimeout(() => {
+        boot.hidden = true;
+        boot.classList.remove('is-welcome');
+        entering = false;
+      }, FADE_MS);
+    }, WELCOME_MS);
   }
 
   /* Start menu "Log Off" / "Shut Down" returns here. */

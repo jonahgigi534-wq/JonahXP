@@ -3,23 +3,33 @@
 
 /* --- Wallpaper --- */
 /* The photo is 1756x895 (~1.96:1) and the carved name spans 11%-87% of its
-   width, so plain `cover` clips letters on anything narrower than ~1.56:1.
+   width. It is shown zoomed in by --wp-zoom, which crops the sides further,
+   so the layout switches by aspect ratio to keep the whole name in frame:
 
-   Wide screens: cover, shifted to 42% so the name centres in the crop.
-   Narrower:     fit to width, pin to the bottom, and extend the sky above
-                 with a gradient sampled from the photo's top edge. */
+   7:4 and wider: cover x zoom, anchored at 44% so the name sits centred.
+   Narrower:      fit to width x zoom, pinned to the bottom, with the sky
+                  extended above by a gradient sampled from the photo's top
+                  edge. */
 .wallpaper {
-  --wp-h: 50.97vw;            /* rendered photo height at 100% width: 895/1756 */
+  --wp-zoom: 1.12;
+  --wp-ratio: 0.5097;         /* photo height / width: 895 / 1756 */
+  --wp-h: calc(100vw * var(--wp-ratio) * var(--wp-zoom));  /* photo height in narrow mode */
   --sky-top: #0b5cbd;
   --sky-seam: #1883c9;        /* average of the photo's top row */
   position: absolute; inset: 0; overflow: hidden;
-  background: var(--sky-seam) url("../assets/wallpaper.webp") 42% 55% / cover no-repeat;
+  background-color: var(--sky-seam);
+  background-image: url("../assets/wallpaper.webp");
+  background-repeat: no-repeat;
+  background-position: 44% 55%;
+  /* "cover", then scaled: the larger of full-height or full-width, x zoom. */
+  background-size: auto max(calc(100% * var(--wp-zoom)),
+                            calc(100vw * var(--wp-ratio) * var(--wp-zoom)));
 }
 
-@media (max-aspect-ratio: 39/25) {
+@media (max-aspect-ratio: 7/4) {
   .wallpaper {
     background:
-      url("../assets/wallpaper.webp") center bottom / 100% auto no-repeat,
+      url("../assets/wallpaper.webp") 44% 100% / calc(100% * var(--wp-zoom)) auto no-repeat,
       linear-gradient(var(--sky-top), var(--sky-seam)) top / 100% calc(100% - var(--wp-h) + 2px) no-repeat,
       var(--sky-seam);
   }
