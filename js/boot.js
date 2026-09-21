@@ -25,7 +25,7 @@
     $('splashBrand').innerHTML = B.lockup('Jonah', 'Developer', 'sp');
     $('bootBrand').innerHTML = B.lockup('Jonah', 'Developer', 'bt');
     $('bootPic').innerHTML = I.avatar();
-    $('bootRestartIcon').innerHTML = I.flag();
+    $('bootRestartIcon').innerHTML = B.flag('restart');
   }
 
   function showLogin() {

@@ -39,7 +39,7 @@
   }
 
   function init() {
-    document.getElementById('startFlag').innerHTML = I.flag();
+    document.getElementById('startFlag').innerHTML = XPBrand.flag('start');
     renderTray();
     renderTasks();
     startClock();

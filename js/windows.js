@@ -19,7 +19,7 @@
       <div class="win-menu">
         ${['File', 'View', 'Tools', 'Help'].map(m => `<span class="win-menu-item is-disabled">${m}</span>`).join('')}
         <span class="win-menu-spacer"></span>
-        <span class="win-menu-flag">${I.flag()}</span>
+        <span class="win-menu-flag">${window.XPBrand.flag("w-" + opts.id)}</span>
       </div>`;
 
     const toolbar = `
