@@ -9,28 +9,35 @@ and it runs.
 ## Structure
 
 ```
-index.html        shell markup (boot screen, desktop, taskbar)
+index.html        shell markup (splash, login, desktop, taskbar)
 css/
   base.css        tokens, reset, scrollbars
-  boot.css        welcome / login screen
+  cursors.css     custom arrow / hand / I-beam / busy cursors
+  boot.css        boot splash + login screen + brand lockup
   desktop.css     wallpaper + icon grid
   window.css      Luna window chrome
   taskbar.css     taskbar, tray, Start menu
   apps.css        content surfaces for each app
 js/
   icons.js        inline SVG icon set
+  brand.js        four-pane flag + wordmark lockup
   data.js         profile + project content  <- edit this to add a project
   windows.js      window manager (drag, resize, min/max, back/forward)
   apps.js         About / Projects / Contact / Resume views
   desktop.js      desktop icon grid
   taskbar.js      task buttons, tray, clock
   startmenu.js    Start menu
-  boot.js         welcome screen
+  boot.js         splash -> login -> desktop sequence
   main.js         boot order
+assets/
+  wallpaper.svg   generated; do not hand-edit
+scripts/
+  make_wallpaper.py  regenerates the wallpaper
+  serve.py           no-cache local preview server
 ```
 
-All artwork is hand-drawn SVG or CSS. No Microsoft assets or image files are
-used, so the whole site is a few hundred KB of text.
+All artwork is hand-drawn SVG or CSS — the flag, the icons, the cursors and
+the wallpaper. No Microsoft assets are shipped and there are no bitmap files.
 
 ## Adding a project
 
@@ -55,13 +62,36 @@ Everything lives in `js/data.js`. Append an entry to the `projects` array:
 
 Categories are defined in the `filters` array in the same file.
 
+## The wallpaper
+
+`assets/wallpaper.svg` is generated, not hand-written. It is a Bliss-style
+hillside with roughly 45,000 individual grass blades and the name cut into
+the turf. To change the name or re-roll it:
+
+```bash
+python scripts/make_wallpaper.py --name JONAH
+```
+
+It is ~1.6 MB on disk, ~512 KB gzipped. If that is too heavy, lower the
+blade counts in the three `turf(...)` calls near the bottom of `build()`.
+
+## The boot sequence
+
+`js/boot.js` runs splash -> login -> desktop. The splash holds for
+`SPLASH_MS` (2.6s) and is skipped on repeat visits within the same tab, via
+a `sessionStorage` flag. "Restart JonahXP" on the login screen replays it.
+
 ## Running locally
 
 ```bash
-python -m http.server 4173
+python scripts/serve.py
 ```
 
-Then open <http://localhost:4173>.
+Then open <http://localhost:4173>. This server sends `no-store`, so edits
+show up on reload instead of being masked by the browser cache.
+
+Asset links in `index.html` carry a `?v=` stamp. Bump it when you deploy a
+change and want to be sure visitors get the new file.
 
 ## Deploying to GitHub Pages
 
