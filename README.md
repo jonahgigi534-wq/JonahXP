@@ -64,16 +64,20 @@ Categories are defined in the `filters` array in the same file.
 
 ## The wallpaper
 
-`assets/wallpaper.svg` is generated, not hand-written. It is a Bliss-style
-hillside with roughly 45,000 individual grass blades and the name cut into
-the turf. To change the name or re-roll it:
+`assets/wallpaper.webp` is the desktop background (1756x895). The carved
+name spans roughly 11-87% of its width, so `css/desktop.css` picks a layout
+by screen shape:
 
-```bash
-python scripts/make_wallpaper.py --name JONAH
-```
+- **16:9 and wider** -- `cover`, shifted to 42% so the name centres in the crop.
+- **Narrower than ~1.56:1** (3:2, tablets, phones) -- fit to width, pin to
+  the bottom, and extend the sky above with a gradient sampled from the
+  photo's top edge, feathered across the seam.
 
-It is ~1.6 MB on disk, ~512 KB gzipped. If that is too heavy, lower the
-blade counts in the three `turf(...)` calls near the bottom of `build()`.
+To replace it, keep the same dimensions and drop in a new file; if the
+aspect changes, update `--wp-h` (height / width, in `vw`) in `css/desktop.css`.
+
+`scripts/make_wallpaper.py` still generates the older procedural SVG
+(`assets/wallpaper.svg`). It is no longer referenced by the site.
 
 ## Sound
 
