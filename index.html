@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JonahXP</title>
+<meta name="description" content="Jonah — developer portfolio. Desktop apps, machine learning, and embedded systems.">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/boot.css">
+<link rel="stylesheet" href="css/desktop.css">
+<link rel="stylesheet" href="css/window.css">
+<link rel="stylesheet" href="css/taskbar.css">
+<link rel="stylesheet" href="css/apps.css">
+</head>
+<body>
+
+<!-- Login / welcome screen -->
+<div id="boot" class="boot">
+  <div class="boot-bar boot-bar-top"></div>
+  <div class="boot-body">
+    <div class="boot-left">
+      <div class="boot-logo">
+        <span class="boot-logo-flag" id="bootFlag"></span>
+        <span class="boot-logo-text">Jonah<sup>xp</sup></span>
+      </div>
+      <div class="boot-logo-sub">Developer</div>
+    </div>
+    <div class="boot-divider"></div>
+    <div class="boot-right">
+      <button class="boot-user" id="bootUser">
+        <span class="boot-user-pic" id="bootPic"></span>
+        <span class="boot-user-meta">
+          <span class="boot-user-name">Jonah</span>
+          <span class="boot-user-role">Developer</span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div class="boot-bar boot-bar-bottom">
+    <span class="boot-hint">Click the user icon to begin</span>
+  </div>
+</div>
+
+<!-- Desktop -->
+<div id="screen" class="screen" hidden>
+  <div class="wallpaper" aria-hidden="true">
+    <div class="wp-sky"></div>
+    <div class="wp-clouds"></div>
+    <div class="wp-hill"></div>
+    <div class="wp-hill2"></div>
+    <div class="wp-wordmark">JONAH</div>
+  </div>
+
+  <div class="icons" id="desktopIcons"></div>
+  <div id="windows" class="windows"></div>
+
+  <div class="taskbar">
+    <button class="start-btn" id="startBtn">
+      <span class="start-flag" id="startFlag"></span>
+      <span class="start-label">start</span>
+    </button>
+    <div class="task-list" id="taskList"></div>
+    <div class="tray">
+      <span class="tray-icons" id="trayIcons"></span>
+      <span class="tray-clock" id="clock">12:00 PM</span>
+    </div>
+  </div>
+
+  <div class="start-menu" id="startMenu" hidden></div>
+</div>
+
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/windows.js"></script>
+<script src="js/apps.js"></script>
+<script src="js/desktop.js"></script>
+<script src="js/taskbar.js"></script>
+<script src="js/startmenu.js"></script>
+<script src="js/boot.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

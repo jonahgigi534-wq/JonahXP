@@ -1,0 +1,75 @@
+/* Welcome / login screen */
+.boot {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #5a7edc 0%, #4a6fd4 42%, #4067cd 58%, #5a7edc 100%);
+  z-index: 9000;
+  transition: opacity .45s ease;
+}
+.boot.is-leaving { opacity: 0; pointer-events: none; }
+
+.boot-bar { flex: 0 0 auto; position: relative; }
+.boot-bar-top { height: 22%; border-bottom: 1px solid rgba(255,255,255,.35); }
+.boot-bar-top::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -3px;
+  height: 2px; background: rgba(255,255,255,.12);
+}
+.boot-bar-bottom {
+  height: 18%;
+  border-top: 1px solid rgba(255,255,255,.35);
+  display: flex; align-items: center; justify-content: center;
+}
+.boot-bar-bottom::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 2px;
+  height: 2px; background: rgba(255,255,255,.12);
+}
+.boot-hint { color: #fff; font-size: 13px; text-shadow: 0 1px 2px rgba(0,0,0,.4); }
+
+.boot-body {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0 6%;
+}
+.boot-left { flex: 1 1 0; display: flex; flex-direction: column; align-items: flex-end; padding-right: 40px; }
+.boot-right { flex: 1 1 0; display: flex; justify-content: flex-start; padding-left: 40px; }
+
+.boot-divider { width: 1px; align-self: stretch; margin: 6% 0; background: rgba(255,255,255,.4); }
+
+.boot-logo { display: flex; align-items: flex-start; gap: 10px; }
+.boot-logo-flag { width: 58px; height: 50px; display: block; }
+.boot-logo-text {
+  font-size: 44px; font-weight: 700; color: #fff; letter-spacing: -1px;
+  text-shadow: 0 2px 5px rgba(0,0,0,.35);
+  line-height: 1;
+}
+.boot-logo-text sup { font-size: 18px; color: #ff8a3d; font-weight: 700; margin-left: 2px; }
+.boot-logo-sub {
+  color: #fff; font-size: 13px; font-weight: 700; margin-top: 4px;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4); align-self: flex-end; padding-right: 8px;
+}
+
+.boot-user {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: 6px; transition: background .15s;
+}
+.boot-user:hover, .boot-user:focus-visible { background: rgba(255,255,255,.14); outline: none; }
+.boot-user-pic {
+  width: 66px; height: 66px; display: block; border-radius: 4px;
+  border: 3px solid #d9e6ff; box-shadow: 0 2px 8px rgba(0,0,0,.35);
+  overflow: hidden; background: #cfe0ff;
+}
+.boot-user-meta { display: flex; flex-direction: column; align-items: center; }
+.boot-user-name { color: #fff; font-size: 20px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,.4); }
+.boot-user-role { color: #cfe0ff; font-size: 11px; font-weight: 700; }
+
+@media (max-width: 700px) {
+  .boot-body { flex-direction: column; gap: 26px; padding: 0 20px; }
+  .boot-left, .boot-right { align-items: center; justify-content: center; padding: 0; }
+  .boot-divider { width: 60%; height: 1px; margin: 0; }
+  .boot-logo-text { font-size: 34px; }
+}
