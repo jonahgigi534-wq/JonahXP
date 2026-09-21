@@ -107,6 +107,7 @@
 
     focus(opts.id);
     notify();
+    XPAudio.play('open');
     return win;
   }
 
@@ -136,11 +137,12 @@
     notify();
   }
 
-  function close(id) {
+  function close(id, silent) {
     const w = wins.get(id);
     if (!w) return;
     w.el.remove();
     wins.delete(id);
+    if (!silent) XPAudio.play('close');
     if (activeId === id) {
       const next = [...wins.keys()].pop() || null;
       activeId = next;
@@ -154,6 +156,7 @@
     if (!w) return;
     w.minimized = true;
     w.el.classList.add('is-minimized');
+    XPAudio.play('minimize');
     if (activeId === id) activeId = null;
     notify();
   }

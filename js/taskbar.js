@@ -24,8 +24,19 @@
   }
 
   function renderTray() {
-    document.getElementById('trayIcons').innerHTML =
+    const host = document.getElementById('trayIcons');
+    const muted = XPAudio.isMuted();
+    host.innerHTML =
+      '<button class="tray-btn" id="traySound" title="' +
+      (muted ? 'Sound off' : 'Sound on') + '">' +
+      (muted ? I.traySpeakerOff() : I.traySpeaker()) + '</button>' +
       I.trayNet() + I.trayShield() + I.trayInfo();
+
+    document.getElementById('traySound').addEventListener('click', () => {
+      XPAudio.unlock();
+      XPAudio.toggle();
+      if (!XPAudio.isMuted()) XPAudio.play('menu');
+    });
   }
 
   function startClock() {
@@ -44,6 +55,7 @@
     renderTasks();
     startClock();
     document.addEventListener('xp:windows', renderTasks);
+    document.addEventListener('xp:audio', renderTray);
   }
 
   window.XPTaskbar = { init };

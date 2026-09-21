@@ -84,6 +84,9 @@
   const trayShield = () => wrap('0 0 16 16', `<path d="M8 1.3l5.6 2v4.4c0 3.3-2.4 6-5.6 7-3.2-1-5.6-3.7-5.6-7V3.3z" fill="#3f9a22" stroke="#26651a"/><path d="M5.4 8l2 2 3.4-4" stroke="#fff" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`);
   const trayInfo = () => wrap('0 0 16 16', `<circle cx="8" cy="8" r="6.7" fill="#1e88e5" stroke="#0d4f97"/><path d="M8 6.8v4.2" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="4.6" r="1.1" fill="#fff"/>`);
 
+  const traySpeaker = () => wrap('0 0 16 16', `<path d="M3 6.2h2.6L8.8 3.4v9.2L5.6 9.8H3z" fill="#e9f3ff" stroke="#0a4a9e" stroke-width="1.1" stroke-linejoin="round"/><path d="M10.6 5.6a4 4 0 0 1 0 4.8M12.4 4a6.4 6.4 0 0 1 0 8" stroke="#0a4a9e" stroke-width="1.2" fill="none" stroke-linecap="round"/>`);
+  const traySpeakerOff = () => wrap('0 0 16 16', `<path d="M3 6.2h2.6L8.8 3.4v9.2L5.6 9.8H3z" fill="#e9f3ff" stroke="#0a4a9e" stroke-width="1.1" stroke-linejoin="round"/><path d="M11 6l3.4 4M14.4 6L11 10" stroke="#d8232a" stroke-width="1.5" fill="none" stroke-linecap="round"/>`);
+
   /* --- Social --- */
   const github = () => wrap('0 0 24 24', `<path fill="currentColor" d="M12 .5C5.7.5.6 5.6.6 11.9c0 5 3.3 9.3 7.8 10.8.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6a11.4 11.4 0 007.8-10.8C23.4 5.6 18.3.5 12 .5z"/>`);
   const linkedin = () => wrap('0 0 24 24', `<path fill="currentColor" d="M20.4 0H3.6A3.6 3.6 0 000 3.6v16.8A3.6 3.6 0 003.6 24h16.8a3.6 3.6 0 003.6-3.6V3.6A3.6 3.6 0 0020.4 0zM7.3 20.4H3.6V9h3.7zM5.4 7.4a2.1 2.1 0 110-4.3 2.1 2.1 0 010 4.3zM20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.5-2.1 2.9v5.7H9.2V9h3.5v1.6h.05a3.8 3.8 0 013.4-1.9c3.7 0 4.3 2.4 4.3 5.5z"/>`);
@@ -102,7 +105,7 @@
   window.XPIcons = {
     flag, avatar, user, globe, pdf, mail, folder, terminal,
     closeX, arrow, go, minGlyph, maxGlyph, restoreGlyph, closeGlyph,
-    trayNet, trayShield, trayInfo,
+    trayNet, trayShield, trayInfo, traySpeaker, traySpeakerOff,
     github, linkedin, mailSmall, external,
     gAll, gChip, gBrain, gApp, power, logoff
   };

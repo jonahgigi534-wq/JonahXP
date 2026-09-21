@@ -41,6 +41,9 @@
 
   /* Click the user tile -> desktop. */
   function enter() {
+    // First real gesture of the session: this is where audio becomes legal.
+    XPAudio.unlock();
+    XPAudio.play('startup');
     const boot = $('boot');
     boot.classList.add('is-leaving');
     $('screen').hidden = false;
@@ -49,7 +52,8 @@
 
   /* Start menu "Log Off" / "Shut Down" returns here. */
   function logOff() {
-    XPWM.list().forEach(w => XPWM.close(w.id));
+    XPAudio.play('logoff');
+    XPWM.list().forEach(w => XPWM.close(w.id, true));
     XPStartMenu.hide();
     const boot = $('boot');
     boot.hidden = false;

@@ -75,6 +75,29 @@ python scripts/make_wallpaper.py --name JONAH
 It is ~1.6 MB on disk, ~512 KB gzipped. If that is too heavy, lower the
 blade counts in the three `turf(...)` calls near the bottom of `build()`.
 
+## Sound
+
+`js/audio.js` synthesises every cue at runtime with the Web Audio API --
+there are no audio files in this repo. Each sound is a small stack of sine
+partials with a bell-like decay:
+
+| Cue | Fires on |
+|-----|----------|
+| `startup` | clicking the login tile |
+| `logoff` | Log Off / Shut Down |
+| `open` / `close` | a window opening or closing |
+| `minimize` | a window minimising |
+| `menu` | opening the Start menu |
+| `error` | unused; kept for future dialogs |
+
+Browsers block audio until the visitor interacts with the page, which works
+in our favour: the first gesture is the click on the login tile, and that is
+exactly when the start-up chime belongs. Before then `play()` is a no-op.
+
+The speaker in the system tray toggles mute, and the choice is remembered in
+`localStorage`. To change the overall level, edit `MASTER` at the top of
+`js/audio.js`.
+
 ## The boot sequence
 
 `js/boot.js` runs splash -> login -> desktop. The splash holds for

@@ -62,6 +62,7 @@
 
   function show() {
     open = true;
+    XPAudio.play('menu');
     document.getElementById('startMenu').hidden = false;
     document.getElementById('startBtn').classList.add('is-open');
   }
