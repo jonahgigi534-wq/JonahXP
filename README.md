@@ -6,6 +6,14 @@ desktop icons, draggable/resizable windows, taskbar and Start menu.
 Static site. No build step, no dependencies, no framework — open `index.html`
 and it runs.
 
+## Rebuilding this as another OS
+
+[`docs/DESKTOP-PORTFOLIO-SPEC.md`](docs/DESKTOP-PORTFOLIO-SPEC.md) is a
+self-contained brief for recreating this project. It documents the
+architecture, the module contracts and the lessons from building it, then
+specs a **classic Mac OS (Platinum)** version in full. Hand it to a person
+or to a coding agent as the only context they need.
+
 ## Structure
 
 ```
