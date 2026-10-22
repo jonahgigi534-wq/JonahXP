@@ -27,7 +27,7 @@
 
     // Right column lists the projects themselves, like XP's pinned shortcuts.
     const right = projects.map((p, i) => ({
-      key: 'p' + i, icon: 'folder', title: p.title.split(' — ')[0],
+      key: 'p' + i, icon: 'folder', title: p.title.split(':')[0],
       run: () => XPApps.project(p.id)
     }));
 

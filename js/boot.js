@@ -46,8 +46,8 @@
   }
 
   function paint() {
-    $('splashBrand').innerHTML = B.lockup('Jonah', 'Developer', 'sp');
-    $('bootBrand').innerHTML = B.lockup('Jonah', 'Developer', 'bt');
+    $('splashBrand').innerHTML = B.lockup('Jonah', 'Jonathan Gigi', 'sp');
+    $('bootBrand').innerHTML = B.lockup('Jonah', 'Jonathan Gigi', 'bt');
     $('bootPic').innerHTML = XPAvatar.tile();
     $('bootRestartIcon').innerHTML = I.restart();
   }

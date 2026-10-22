@@ -102,7 +102,7 @@
   /* ---------------- Project detail ---------------- */
   function detailView(p) {
     return {
-      title: `${p.title} — My Projects`,
+      title: `${p.title} - My Projects`,
       address: `https://www.myprojects.com/${p.id}`,
       render(root, api) {
         const page = el('div', 'proj');
@@ -160,9 +160,9 @@
             </div>
           </div>
           <div class="contact-note">
-            Happy to talk about any of the projects here — how they were built, what I would
-            change, or where they fall short. Every repository is public, so the fastest way to
-            get a feel for how I work is to read the source.
+            Happy to talk about any of these projects, how they were built, or what I would
+            change. All the repos are public, so reading the code is the quickest way to see
+            how I work.
           </div>`;
         root.appendChild(page);
       }
@@ -173,7 +173,7 @@
   function resumeView() {
     const text = [
       '=========================================',
-      ` ${profile.name.toUpperCase()} — ${profile.role.toUpperCase()}`,
+      ` ${profile.name.toUpperCase()}, ${profile.role.toUpperCase()}`,
       '=========================================',
       '',
       `GitHub : ${profile.github}`,
@@ -199,7 +199,7 @@
     ].join('\n');
 
     return {
-      title: 'Resume.txt — Notepad',
+      title: 'Resume.txt - Notepad',
       address: 'Resume.txt',
       render(root) {
         const page = el('div', 'notepad');
@@ -228,7 +228,7 @@
     }),
 
     resume: () => window.XPWM.open({
-      id: 'resume', title: 'Resume.txt — Notepad', icon: 'pdf', chrome: 'simple',
+      id: 'resume', title: 'Resume.txt - Notepad', icon: 'pdf', chrome: 'simple',
       width: 640, height: 560, statusRight: 'Notepad', view: resumeView()
     }),
 
