@@ -121,3 +121,31 @@
   .sm-cols { flex-direction: column; }
   .sm-col-left { border-right: 0; border-bottom: 1px solid #b6cbe8; }
 }
+
+/* Tray notification balloon */
+.balloon {
+  --tail-right: 60px;
+  position: absolute; z-index: 600; right: 6px; bottom: calc(var(--taskbar-h) + 14px);
+  width: 300px; max-width: calc(100vw - 16px); padding: 7px 12px 8px;
+  background: #ffffe1; color: #000; border: 1px solid #000; border-radius: 7px;
+  box-shadow: 2px 3px 6px rgba(0,0,0,.35);
+  font-size: 11px; line-height: 1.45;
+  opacity: 0; transform: translateY(4px); transition: opacity .25s ease, transform .25s ease;
+}
+.balloon.is-shown { opacity: 1; transform: none; }
+/* Tail: a black triangle with a cream one inside it, pointing down at the icon. */
+.balloon::before,
+.balloon::after {
+  content: ""; position: absolute; top: 100%; border-style: solid; border-color: transparent;
+}
+.balloon::before { right: calc(var(--tail-right) - 6px); border-width: 0; border-top: 15px solid #000; border-left: 18px solid transparent; }
+.balloon::after  { right: calc(var(--tail-right) - 4.5px); border-width: 0; margin-top: -1px; border-top: 13px solid #ffffe1; border-left: 15px solid transparent; }
+.balloon-head { display: flex; align-items: center; gap: 7px; margin-bottom: 4px; font-size: 12px; }
+.balloon-head svg { width: 15px; height: 15px; flex: 0 0 15px; }
+.balloon p { margin: 0 0 6px; }
+.balloon-tip { color: #6d6d6d; text-align: center; }
+.balloon-close {
+  position: absolute; top: 5px; right: 5px; width: 15px; height: 15px; line-height: 12px;
+  border: 1px solid #b9b9a5; border-radius: 3px; background: #fffff0; color: #5a5a5a; font-size: 12px;
+}
+.balloon-close:hover { background: #fff; border-color: #7a7a68; color: #000; }

@@ -10,6 +10,7 @@
   const SPLASH_MS = 2600;   // how long the marquee runs
   const WELCOME_MS = 2200;  // how long "welcome" holds before the desktop
   const FADE_MS = 500;      // must match the CSS transition
+  const BALLOON_DELAY_MS = 1600;  // welcome balloon, once the desktop has settled
 
   let entering = false;
 
@@ -82,6 +83,7 @@
       boot.classList.add('is-leaving');
       crtOff();
       XPAudio.play('startup');
+      setTimeout(XPTaskbar.showBalloon, BALLOON_DELAY_MS);
       setTimeout(() => {
         boot.hidden = true;
         boot.classList.remove('is-welcome');
@@ -93,6 +95,7 @@
   /* Start menu "Log Off" / "Shut Down" returns here. */
   function logOff() {
     XPAudio.play('logoff');
+    XPTaskbar.hideBalloon();
     XPWM.list().forEach(w => XPWM.close(w.id, true));
     XPStartMenu.hide();
     const boot = $('boot');
