@@ -42,8 +42,8 @@
     'center 72%');
 
   const thumbWifi = photo(
-    'assets/projects/densepose.webp',
-    'DensePose dashboard: two sensor nodes online, motion intensity, heart rate and breathing readouts, and a 3D room grid with a detected person',
+    'assets/projects/csi-presence.webp',
+    'CSI Presence Detection dashboard: two sensor nodes online, motion intensity, heart rate and breathing readouts, and a 3D room grid with a detected person',
     'center 62%');
 
   const projects = [
@@ -100,8 +100,8 @@
       notes: 'Training and live prediction use different data on purpose. The model learns from magnetograms, but the live feed only has X-ray flux, so each forecast sticks to the data it was trained on.'
     },
     {
-      id: 'wifi-densepose',
-      title: 'DensePose with WiFi Radio Waves',
+      id: 'csi-presence',
+      title: 'CSI Presence Detection',
       tagline: 'Presence, motion and position sensing from WiFi CSI alone',
       category: 'hardware',
       badge: 'Embedded / RF',
