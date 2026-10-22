@@ -133,6 +133,7 @@
 
   const profile = {
     name: 'Jonah',
+    fullName: 'Jonathan Gigi',
     role: 'Developer',
     github: 'https://github.com/jonahgigi534-wq',
     email: 'gigijoseph10@gmail.com',
@@ -141,6 +142,26 @@
       'I build desktop apps, machine-learning systems and embedded hardware, usually start to finish. I like projects where the hard part is actually hard: editing PDFs with no cloud behind them, forecasting solar flares without the model peeking at the answers, finding people in a room with nothing but WiFi.',
       'Most of what I make is open source under MIT. I like software that works without an account or a subscription, and everything below runs on your own computer.',
       'Each repo says plainly what works and what does not. A forecast or a sensor reading is only useful if you know how far to trust it.'
+    ],
+    /* About Me side cards. `glyph` keys into apps.js GLYPHS; `tile` is
+       [background, text colour, label] for a small lettered icon. */
+    focus: [
+      { label: 'Machine Learning', glyph: 'ml' },
+      { label: 'Desktop Apps', glyph: 'app' },
+      { label: 'Embedded Hardware', glyph: 'chip' },
+      { label: 'Signal Processing', glyph: 'wave' },
+      { label: 'Data Dashboards', glyph: 'chart' },
+      { label: 'Problem Solving', glyph: 'bulb' }
+    ],
+    software: [
+      { label: 'Python', tile: ['#3572a5', '#ffd43b', 'Py'] },
+      { label: 'JavaScript', tile: ['#f0db4f', '#222', 'JS'] },
+      { label: 'C / ESP-IDF', tile: ['#c4302b', '#fff', 'C'] },
+      { label: 'Electron', tile: ['#2b2e3a', '#9feaf9', 'El'] },
+      { label: 'React', tile: ['#20232a', '#61dafb', 'Re'] },
+      { label: 'FastAPI', tile: ['#059487', '#fff', 'API'] },
+      { label: 'VS Code', tile: ['#0065a9', '#fff', 'VS'] },
+      { label: 'Claude Code', tile: ['#d97757', '#fff', 'CC'] }
     ],
     skills: [
       'Python', 'JavaScript', 'C', 'Electron', 'FastAPI', 'React', 'Three.js',

@@ -61,7 +61,8 @@
 }
 .win-menu-item { padding: 2px 7px; border-radius: 2px; color: #000; }
 .win-menu-item:hover { background: var(--xp-select); color: #fff; }
-.win-menu-item.is-disabled { color: #9a968a; pointer-events: none; }
+.win-menu-item.is-disabled { color: #9a968a; }
+.win-menu-item.is-disabled:hover { background: none; color: #9a968a; }
 .win-menu-spacer { flex: 1 1 auto; }
 .win-menu-flag { width: 19px; height: 17px; opacity: .9; margin-right: 4px; flex: 0 0 auto; }
 .win-menu-flag svg { width: 100%; height: 100%; display: block; }
@@ -69,7 +70,7 @@
 /* Toolbar */
 .win-toolbar {
   flex: 0 0 auto; display: flex; align-items: center; gap: 2px;
-  padding: 3px 4px; min-height: 30px;
+  padding: 3px 4px; min-height: 38px;
   background: linear-gradient(180deg, var(--xp-toolbar-a), var(--xp-toolbar-b));
   border-bottom: 1px solid #d5d2c6;
   overflow-x: auto; scrollbar-width: none;
@@ -80,10 +81,11 @@
   padding: 3px 8px 3px 5px; border-radius: 3px;
   border: 1px solid transparent; white-space: nowrap;
 }
-.tb-btn svg { width: 20px; height: 20px; flex: 0 0 20px; }
+.tb-btn svg { width: 24px; height: 24px; flex: 0 0 24px; }
 .tb-btn:hover { border-color: #b5c7e4; background: linear-gradient(180deg, #fefefe, #dfeaf9); }
 .tb-btn:active { background: linear-gradient(180deg, #cfe0f6, #eaf1fc); }
-.tb-btn[disabled] { opacity: .4; pointer-events: none; }
+.tb-btn[disabled] { filter: grayscale(1); opacity: .55; pointer-events: none; }
+.tb-btn-icon { padding: 3px 4px; }
 .tb-sep { width: 1px; align-self: stretch; margin: 2px 4px; background: #c9c5b6; }
 
 /* Address bar */
@@ -100,7 +102,13 @@
   border: 1px solid #7f9db9;
 }
 .win-address-field svg { width: 14px; height: 14px; flex: 0 0 14px; }
-.win-address-text { color: #000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.win-address-text { flex: 1 1 auto; color: #000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.win-address-drop {
+  width: 16px; height: 16px; margin-right: -3px; flex: 0 0 16px; display: grid; place-items: center;
+  color: #4d6185; border: 1px solid #b9cbe8; border-radius: 2px;
+  background: linear-gradient(180deg, #e3edfb, #c3d5f2);
+}
+.win-address-drop svg { width: 10px; height: 10px; }
 .win-address-go { display: flex; align-items: center; gap: 4px; padding: 0 4px; color: #333; }
 .win-address-go svg { width: 16px; height: 16px; }
 
@@ -127,4 +135,10 @@
 
 @media (max-width: 720px) {
   .win-address-label, .win-address-go span { display: none; }
+}
+
+/* Phones: icon-only toolbar so every button fits. */
+@media (max-width: 520px) {
+  .tb-btn span { display: none; }
+  .tb-btn { padding: 3px 5px; }
 }

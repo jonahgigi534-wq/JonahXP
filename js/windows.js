@@ -13,32 +13,43 @@
   const notify = () => document.dispatchEvent(new CustomEvent('xp:windows'));
 
   /* ---------- markup ---------- */
+  /* Toolbar entries: 'sep', 'close', 'back', 'forward', or a tool
+     { id, label, icon } that is passed to opts.onTool when clicked. A tool
+     with no label shows its icon only. */
+  const DEFAULT_TOOLBAR = ['close', 'sep', 'back', 'forward'];
+  const DEFAULT_MENU = ['File', 'View', 'Tools', 'Help'];
+
+  function toolMarkup(t) {
+    if (t === 'sep') return '<span class="tb-sep"></span>';
+    if (t === 'close') return `<button class="tb-btn" data-act="close">${I.closeX()}<span>Close</span></button>`;
+    if (t === 'back') return `<button class="tb-btn" data-act="back" disabled>${I.arrow('left')}<span>Back</span></button>`;
+    if (t === 'forward') return `<button class="tb-btn" data-act="forward" disabled>${I.arrow('right')}<span>Forward</span></button>`;
+    const label = t.label ? `<span>${t.label}</span>` : '';
+    return `<button class="tb-btn${t.label ? '' : ' tb-btn-icon'}" data-tool="${t.id}" title="${t.title || t.label}">${I[t.icon] ? I[t.icon]() : ''}${label}</button>`;
+  }
+
   function chromeMarkup(opts) {
-    const browser = opts.chrome !== 'simple';
+    const showAddress = opts.address != null ? opts.address : opts.chrome !== 'simple';
+    const menuItems = opts.menu || DEFAULT_MENU;
     const menu = `
       <div class="win-menu">
-        ${['File', 'View', 'Tools', 'Help'].map(m => `<span class="win-menu-item is-disabled">${m}</span>`).join('')}
+        ${menuItems.map(m => `<span class="win-menu-item${m === 'Help' ? ' is-disabled' : ''}">${m}</span>`).join('')}
         <span class="win-menu-spacer"></span>
         <span class="win-menu-flag">${window.XPBrand.flag("w-" + opts.id)}</span>
       </div>`;
 
-    const toolbar = `
-      <div class="win-toolbar">
-        <button class="tb-btn" data-act="close">${I.closeX()}<span>Close</span></button>
-        <span class="tb-sep"></span>
-        <button class="tb-btn" data-act="back" disabled>${I.arrow('left')}<span>Back</span></button>
-        <button class="tb-btn" data-act="forward" disabled>${I.arrow('right')}<span>Forward</span></button>
-        ${(opts.tools || []).map(t =>
-          `<span class="tb-sep"></span><button class="tb-btn" data-tool="${t.id}">${I[t.icon] ? I[t.icon]() : ''}<span>${t.label}</span></button>`
-        ).join('')}
-      </div>`;
+    const items = opts.toolbar || DEFAULT_TOOLBAR.concat(...(opts.tools || []).map(t => ['sep', t]));
+    const toolbar = `<div class="win-toolbar">${items.map(toolMarkup).join('')}</div>`;
 
-    const address = browser ? `
+    const addrIcon = I[opts.addressIcon || 'globe']();
+    const address = showAddress ? `
       <div class="win-address">
         <span class="win-address-label">Address</span>
-        <span class="win-address-field">${I.globe()}<span class="win-address-text"></span></span>
+        <span class="win-address-field">${addrIcon}<span class="win-address-text"></span><span class="win-address-drop">${I.caret()}</span></span>
         <span class="win-address-go">${I.go()}<span>Go</span></span>
       </div>` : '';
+    const statusRight = opts.statusRight === '' ? '' :
+      `<span class="win-status-cell">${opts.statusRight || 'My Computer'}</span>`;
 
     return `
       <div class="win-title">
@@ -55,8 +66,8 @@
       ${address}
       <div class="win-body"></div>
       <div class="win-status">
-        <span class="win-status-cell grow" data-status>Done</span>
-        <span class="win-status-cell">${opts.statusRight || 'My Computer'}</span>
+        <span class="win-status-cell grow" data-status>${opts.status || 'Done'}</span>
+        ${statusRight}
       </div>
       <div class="win-resize win-resize-e"></div>
       <div class="win-resize win-resize-s"></div>
@@ -240,7 +251,7 @@
         return;
       }
       const toolBtn = e.target.closest('[data-tool]');
-      if (toolBtn && win.opts.onTool) win.opts.onTool(toolBtn.dataset.tool, win.api);
+      if (toolBtn && win.opts.onTool) win.opts.onTool(toolBtn.dataset.tool, win.api, toolBtn);
     });
 
     el.querySelector('.win-title').addEventListener('dblclick', (e) => {

@@ -113,7 +113,55 @@
   const power = () => wrap('0 0 24 24', `<circle cx="12" cy="12" r="10" fill="#e2521a" stroke="#fff" stroke-width="1.4"/><path d="M12 6.5v6" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><path d="M8 9a5.5 5.5 0 108 0" stroke="#fff" stroke-width="2.1" fill="none" stroke-linecap="round"/>`);
   const logoff = () => wrap('0 0 24 24', `<circle cx="12" cy="12" r="10" fill="#f0a713" stroke="#fff" stroke-width="1.4"/><path d="M14.5 8.5H9.5a1 1 0 00-1 1v5a1 1 0 001 1h5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M13 12h5m0 0l-2-2m2 2l-2 2" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`);
 
+  /* --- Explorer toolbar --- */
+  const home = () => wrap('0 0 24 24', `
+    <defs><linearGradient id="hmr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6a04d"/><stop offset="1" stop-color="#cf5d16"/></linearGradient></defs>
+    <path d="M5 11.5V20.5h14V11.5" fill="#f7f1df" stroke="#8a7a55" stroke-width="1"/>
+    <path d="M2.5 12.5 12 4l9.5 8.5" fill="none" stroke="url(#hmr)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="10" y="14.5" width="4" height="6" fill="#7b5a2e"/>
+    <rect x="15.5" y="13" width="2.5" height="2.5" fill="#7fb6ef" stroke="#5a7fa8" stroke-width=".6"/>`);
+  const star = () => wrap('0 0 24 24', `
+    <defs><linearGradient id="stg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2a8"/><stop offset="1" stop-color="#f2b821"/></linearGradient></defs>
+    <path d="M12 2.5l2.8 6 6.5.7-4.9 4.4 1.4 6.4L12 16.7 6.2 20l1.4-6.4L2.7 9.2l6.5-.7z" fill="url(#stg)" stroke="#c18a12" stroke-width="1" stroke-linejoin="round"/>`);
+  const theme = () => wrap('0 0 24 24', `
+    <rect x="1.5" y="1.5" width="21" height="21" rx="3" fill="#1d2b6b" stroke="#c49a2a" stroke-width="1.2"/>
+    <path d="M12 4.5v15a7.5 7.5 0 010-15z" fill="#ffd34d"/>
+    <path d="M12 4.5a7.5 7.5 0 010 15z" fill="#0b1440"/>
+    <path d="M14.2 8.2a4 4 0 104.2 6.4 4.6 4.6 0 01-4.2-6.4z" fill="#e8eefc"/>`);
+  const caret = () => wrap('0 0 12 12', `<path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`);
+  const search = () => wrap('0 0 24 24', `<circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>`);
+
+  /* Round "collapse" button on the About side cards; `open` points the
+     chevrons up. */
+  const collapse = (open) => wrap('0 0 16 16', `
+    <circle cx="8" cy="8" r="7" fill="#fff" stroke="#8aa3d8" stroke-width="1"/>
+    <path d="${open ? 'M5 7.5l3-3 3 3M5 11l3-3 3 3' : 'M5 5l3 3 3-3M5 8.5l3 3 3-3'}" fill="none" stroke="#1b3f9c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`);
+
+  /* Small list glyphs for the About side cards. `tile` is a rounded square
+     with a short label, used for software so no product logos ship. */
+  const tile = (bg, fg, text) => wrap('0 0 16 16', `
+    <rect x=".5" y=".5" width="15" height="15" rx="3.5" fill="${bg}"/>
+    <text x="8" y="11.2" font-family="Tahoma,sans-serif" font-size="${text.length > 2 ? 6 : 7.5}" font-weight="bold" fill="${fg}" text-anchor="middle">${text}</text>`);
+  const dot = (color, body) => wrap('0 0 16 16', `<circle cx="8" cy="8" r="7.2" fill="${color}"/><g fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${body}</g>`);
+
+  /* Larger pictures beside the About paragraphs. */
+  const aboutCode = () => wrap('0 0 64 64', `
+    <defs><linearGradient id="acg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe6f5"/></linearGradient></defs>
+    <rect x="6" y="9" width="52" height="40" rx="4" fill="#2d3b55" stroke="#141d2e" stroke-width="1.5"/>
+    <rect x="10" y="13" width="44" height="31" rx="1.5" fill="url(#acg)"/>
+    <path d="M22 22l-6 6.5 6 6.5M42 22l6 6.5-6 6.5" fill="none" stroke="#1f6fd6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M35 20l-6 17" stroke="#e2521a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M24 49h16l3 7H21z" fill="#9aa6b8" stroke="#5d6879" stroke-width="1.2"/>`);
+  const aboutGauge = () => wrap('0 0 64 64', `
+    <defs><linearGradient id="agg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e2521a"/><stop offset=".5" stop-color="#f2b821"/><stop offset="1" stop-color="#3f9a22"/></linearGradient></defs>
+    <circle cx="32" cy="36" r="25" fill="#f7f7f2" stroke="#3a4660" stroke-width="2"/>
+    <path d="M13 40a19 19 0 0138 0" fill="none" stroke="url(#agg)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M32 40 43 24" stroke="#20283a" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="32" cy="40" r="4" fill="#20283a"/>
+    <path d="M20 52h24" stroke="#a4adbd" stroke-width="2.4" stroke-linecap="round"/>`);
+
   window.XPIcons = {
+    home, star, theme, caret, search, collapse, tile, dot, aboutCode, aboutGauge,
     flag, avatar, user, globe, pdf, mail, folder, terminal,
     closeX, arrow, go, minGlyph, maxGlyph, restoreGlyph, closeGlyph,
     trayNet, trayShield, trayInfo, traySpeaker, traySpeakerOff, restart,
