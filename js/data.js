@@ -1,40 +1,15 @@
 /* Portfolio content. Single source of truth for the shell's apps.
    Project details are drawn from each repository's own README. */
 (function () {
-  const svg = (body) =>
-    `<svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${body}</svg>`;
-
-  /* --- Generated cover art, one per project --- */
-  const thumbPdf = () => svg(`
-    <defs>
-      <linearGradient id="tp-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b3550"/><stop offset="1" stop-color="#151a29"/></linearGradient>
-    </defs>
-    <rect width="320" height="180" fill="url(#tp-bg)"/>
-    <g transform="translate(96 24)">
-      <rect x="0" y="0" width="128" height="140" rx="4" fill="#fdfdfd"/>
-      <rect x="0" y="0" width="128" height="20" rx="4" fill="#e8e8e8"/>
-      <circle cx="11" cy="10" r="3" fill="#ff5f57"/><circle cx="22" cy="10" r="3" fill="#febc2e"/><circle cx="33" cy="10" r="3" fill="#28c840"/>
-      <rect x="10" y="32" width="74" height="6" rx="3" fill="#c9cede"/>
-      <rect x="10" y="46" width="108" height="5" rx="2.5" fill="#e3e6ee"/>
-      <rect x="10" y="58" width="108" height="5" rx="2.5" fill="#e3e6ee"/>
-      <rect x="10" y="70" width="86" height="5" rx="2.5" fill="#e3e6ee"/>
-      <rect x="10" y="90" width="108" height="5" rx="2.5" fill="#e3e6ee"/>
-      <rect x="10" y="102" width="62" height="5" rx="2.5" fill="#e3e6ee"/>
-      <rect x="62" y="112" width="56" height="20" rx="3" fill="#d8232a"/>
-      <text x="90" y="126" font-family="Tahoma,sans-serif" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">PDF</text>
-    </g>
-    <g fill="#8fa2c9" opacity=".85">
-      <rect x="26" y="52" width="42" height="9" rx="4.5"/>
-      <rect x="26" y="70" width="34" height="9" rx="4.5"/>
-      <rect x="26" y="88" width="46" height="9" rx="4.5"/>
-      <rect x="26" y="106" width="30" height="9" rx="4.5"/>
-    </g>
-    <rect x="18" y="38" width="62" height="96" rx="5" fill="none" stroke="#54648c" stroke-width="1.5"/>`);
-
   /* Real screenshots, cropped to fill the frame. `pos` picks which part
      of the image stays in view when the frame's shape differs from it. */
   const photo = (src, alt, pos) => () =>
     `<img class="thumb-photo" src="${src}" alt="${alt}" loading="lazy" draggable="false" style="object-position:${pos}">`;
+
+  const thumbPdf = photo(
+    'assets/projects/pdf-pilot.webp',
+    'PDF Pilot editing a one-page PDF that reads Gone are the days of paying for Adobe Acrobat, with the tool list on the left and a page thumbnail',
+    'center 20%');
 
   const thumbHelios = photo(
     'assets/projects/helios.webp',
@@ -54,6 +29,7 @@
       category: 'apps',
       badge: 'Desktop app',
       meta: 'Electron · JavaScript',
+      views: '3.4K views', age: '2 months ago',
       repo: 'https://github.com/jonahgigi534-wq/PDF-Pilot',
       thumb: thumbPdf,
       summary: [
@@ -80,6 +56,7 @@
       category: 'ml',
       badge: 'Machine learning',
       meta: 'Python · FastAPI · scikit-learn',
+      views: '2.1K views', age: '1 month ago',
       repo: 'https://github.com/jonahgigi534-wq/solar_weather_predictor',
       thumb: thumbHelios,
       summary: [
@@ -106,6 +83,7 @@
       category: 'hardware',
       badge: 'Embedded / RF',
       meta: 'ESP32-S3 · C · Python · React',
+      views: '5.8K views', age: '3 weeks ago',
       repo: 'https://github.com/jonahgigi534-wq/DensePoseWithWifiRadioWaves',
       thumb: thumbWifi,
       summary: [

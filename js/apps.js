@@ -198,7 +198,7 @@
       <span class="card-avatar">${XPAvatar.tile({ still: true })}</span>
       <span class="card-meta-text">
         <span class="card-title">${p.title}</span>
-        <span class="card-sub">${p.meta}</span>
+        <span class="card-sub">${p.views} &bull; ${p.age}</span>
       </span>
     </span>`;
 
@@ -239,7 +239,7 @@
               </span>
             </div>
             <div class="watch-desc">
-              <div class="watch-desc-meta">${p.meta}</div>
+              <div class="watch-desc-meta">${p.views}&nbsp;&nbsp;${p.age}&nbsp;&nbsp;<span class="watch-desc-stack">${p.meta}</span></div>
               ${p.summary.map(s => `<p>${s}</p>`).join('')}
               <h2>What it does</h2>
               <ul class="detail-list">${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
@@ -255,7 +255,7 @@
         projects.filter(o => o.id !== p.id).forEach((o) => {
           const item = el('button', 'next-item', `
             <span class="next-thumb">${o.thumb()}</span>
-            <span class="next-text"><span class="next-title">${o.title}</span><span class="next-sub">${o.meta}</span></span>`);
+            <span class="next-text"><span class="next-title">${o.title}</span><span class="next-sub">${o.views} &bull; ${o.age}</span></span>`);
           item.addEventListener('click', () => api.navigate(detailView(o)));
           next.appendChild(item);
         });
