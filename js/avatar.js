@@ -5,7 +5,7 @@
    The clouds are a strip twice the tile's width holding two identical
    halves, so sliding it left by exactly half loops with no visible seam. */
 (function () {
-  const FIGURE = 'assets/avatar-figure.png?v=1';
+  const FIGURE = 'assets/avatar-figure.png?v=2';
 
   /* One tile's worth of clouds, in a 100x100 box. Kept to the sides and
      low corners, where the figure leaves sky showing. */
