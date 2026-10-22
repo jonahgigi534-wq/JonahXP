@@ -125,6 +125,12 @@ plays. The splash holds for
 `SPLASH_MS` (2.6s) and is skipped on repeat visits within the same tab, via
 a `sessionStorage` flag. "Restart JonahXP" on the login screen replays it.
 
+A CRT/VHS overlay (`css/crt.css`) runs over the splash, login and welcome
+screens: scanline grid, a band sweeping down the screen, flicker, film
+grain, a slight red/blue fringe and a power-on glitch. It fades out when the
+desktop appears and returns on Log Off or Restart. All of it is pure CSS,
+and the motion stops under `prefers-reduced-motion`.
+
 ## Running locally
 
 ```bash

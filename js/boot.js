@@ -24,6 +24,27 @@
     try { sessionStorage.setItem('jonahxp.booted', '1'); } catch (e) { /* private mode */ }
   };
 
+  /* CRT/VHS overlay (css/crt.css): on for the boot screens, faded out once
+     the desktop is up. `powerOn` adds the brief warm-up glitch. */
+  const body = document.body;
+  function crtOn(powerOn) {
+    body.classList.remove('crt-fading');
+    body.classList.add('crt-on');
+    if (powerOn) {
+      body.classList.add('crt-turning-on');
+      setTimeout(() => body.classList.remove('crt-turning-on'), 320);
+    }
+  }
+  function crtOff() {
+    body.classList.add('crt-fading');
+    setTimeout(() => {
+      // Only drop it if nothing switched it back on during the fade.
+      if (body.classList.contains('crt-fading')) {
+        body.classList.remove('crt-on', 'crt-fading');
+      }
+    }, FADE_MS);
+  }
+
   function paint() {
     $('splashBrand').innerHTML = B.lockup('Jonah', 'Developer', 'sp');
     $('bootBrand').innerHTML = B.lockup('Jonah', 'Developer', 'bt');
@@ -59,6 +80,7 @@
     setTimeout(() => {
       $('screen').hidden = false;
       boot.classList.add('is-leaving');
+      crtOff();
       XPAudio.play('startup');
       setTimeout(() => {
         boot.hidden = true;
@@ -75,6 +97,7 @@
     XPStartMenu.hide();
     const boot = $('boot');
     boot.hidden = false;
+    crtOn(true);
     requestAnimationFrame(() => boot.classList.remove('is-leaving'));
     $('screen').hidden = true;
   }
@@ -85,12 +108,14 @@
     $('boot').hidden = true;
     splash.hidden = false;
     document.body.classList.add('is-booting');
+    crtOn(true);
     requestAnimationFrame(() => splash.classList.remove('is-leaving'));
     setTimeout(showLogin, SPLASH_MS);
   }
 
   function init() {
     paint();
+    crtOn(true);
     $('bootUser').addEventListener('click', enter);
     $('bootRestart').addEventListener('click', restart);
 
