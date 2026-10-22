@@ -37,15 +37,14 @@
     </svg>`;
   }
 
-  /* Full lockup. `tone` picks white-on-dark (boot) or the same on blue. */
+  /* Full lockup, stacked: flag above, wordmark, then the subtitle tucked
+     under its left edge. */
   function lockup(name, sub, id) {
     id = id || 'lk';
     return `<span class="brand">
       <span class="brand-flag">${flag(id)}</span>
-      <span class="brand-text">
-        <span class="brand-name">${name}<sup>xp</sup></span>
-        <span class="brand-sub">${sub}</span>
-      </span>
+      <span class="brand-name">${name}<sup>xp</sup></span>
+      <span class="brand-sub">${sub}</span>
     </span>`;
   }
 

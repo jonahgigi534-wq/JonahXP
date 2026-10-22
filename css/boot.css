@@ -1,21 +1,27 @@
-/* Boot splash and login screen. */
+/* Boot splash, login screen and welcome screen.
+   Login metrics are taken from the reference at 1858x960: 100px bands,
+   3px highlight lines, a 2px divider with a 52px gap either side, and both
+   columns centred on 45% of the panel height. */
 
-/* ---------- shared brand lockup ---------- */
-.brand { display: inline-flex; align-items: flex-start; gap: 10px; }
-.brand-flag { display: block; flex: 0 0 auto; }
+/* ---------- shared brand lockup (stacked: flag over wordmark) ---------- */
+.brand { display: inline-grid; justify-items: end; }
+.brand-flag { display: block; width: 104px; height: 91px; margin: 0 30px -2px 0; }
 .brand-flag svg { width: 100%; height: 100%; display: block; }
-.brand-text { display: flex; flex-direction: column; align-items: flex-end; }
 .brand-name {
-  color: #fff; font-weight: 700; letter-spacing: -1.5px; line-height: .92;
   display: inline-flex; align-items: flex-start;
+  color: #fff;
+  font-family: "Franklin Gothic Medium", "Franklin Gothic", "Arial Narrow", Arial, sans-serif;
+  font-weight: 400; font-size: 52px; line-height: .86; letter-spacing: -1px;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, .25);
 }
 .brand-name sup {
-  color: #ff5b1a; font-weight: 700; margin-left: 3px;
-  font-size: .42em; line-height: 1; letter-spacing: 0;
+  color: #e8552a; font-size: .6em; line-height: 1; letter-spacing: 0;
+  margin: -.32em 0 0 2px; text-shadow: none;
 }
 .brand-sub {
-  color: #fff; font-style: italic; font-weight: 700;
-  margin-top: 2px; letter-spacing: .2px;
+  justify-self: start; padding-left: 4px; margin-top: -1px;
+  color: #fff; font-family: Tahoma, Arial, sans-serif;
+  font-size: 15px; font-style: italic; font-weight: 700; letter-spacing: .1px;
 }
 
 /* ---------- 1. boot splash ---------- */
@@ -29,10 +35,6 @@
 .splash.is-leaving { opacity: 0; pointer-events: none; }
 
 .splash-center { display: flex; flex-direction: column; align-items: center; }
-
-.splash-brand .brand-flag { width: 78px; height: 68px; }
-.splash-brand .brand-name { font-size: 54px; }
-.splash-brand .brand-sub { font-size: 16px; }
 
 /* Classic three-block progress marquee in a sunken trough. */
 .splash-bar {
@@ -69,98 +71,149 @@
 
 /* ---------- 2. login screen ---------- */
 .boot {
+  --band: 100px;          /* dark bands above and below the panel */
+  --gap: 52px;            /* space between the divider and each column */
   position: fixed; inset: 0; z-index: 9000;
-  display: flex; flex-direction: column;
-  background:
-    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
-    linear-gradient(180deg, #4c78d8 0%, #4470d2 45%, #3f6acd 55%, #4a76d6 100%);
-  background-color: #4470d2;
+  background: #002d99;
+  font-family: Tahoma, Arial, sans-serif;
   transition: opacity .45s ease;
 }
 .boot.is-leaving { opacity: 0; pointer-events: none; }
 
-.boot-bar { flex: 0 0 auto; position: relative; }
-.boot-bar-top {
-  height: 13%;
-  background: linear-gradient(180deg, #14459f, #1d55b8);
-  border-bottom: 1px solid rgba(255,255,255,.45);
-  box-shadow: 0 3px 0 rgba(255,255,255,.1);
-}
-.boot-bar-bottom {
-  height: 13%;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 26px;
-  background: linear-gradient(180deg, #1d55b8, #14459f);
-  border-top: 1px solid rgba(255,255,255,.45);
-  box-shadow: 0 -3px 0 rgba(255,255,255,.1);
-}
-
 .boot-body {
-  flex: 1 1 auto;
-  display: flex; align-items: center; justify-content: center;
-  padding: 0 5%;
+  position: absolute; inset: var(--band) 0;
+  background: #587cdb;
 }
+/* Pale blue line along the top of the panel, warm orange along the bottom,
+   both brightest a third of the way in and gone by two thirds. */
+.boot-body::before,
+.boot-body::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 3px;
+}
+.boot-body::before {
+  top: 0;
+  background: linear-gradient(90deg, transparent, #bad7f8, transparent, transparent);
+}
+.boot-body::after {
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, #f8953d, transparent, transparent);
+}
+
+.boot-divider {
+  position: absolute; left: 50%; top: 20%; bottom: 20%; width: 2px;
+  transform: translateX(-1px);
+  background: linear-gradient(rgba(186,215,248,0) 0, #bad7f8 40%, #bad7f8 60%, rgba(186,215,248,0));
+  opacity: .35; pointer-events: none;
+}
+
 .boot-left {
-  flex: 1 1 0; display: flex; flex-direction: column;
-  align-items: center; padding-right: 46px;
+  position: absolute; left: 50%; top: 45%;
+  transform: translate(calc(-100% - var(--gap) - 1px), -50%);
+  display: flex; flex-direction: column; align-items: flex-end;
 }
-.boot-right { flex: 1 1 0; display: flex; justify-content: flex-start; padding-left: 46px; }
-.boot-divider { width: 1px; align-self: stretch; margin: 8% 0; background: rgba(255,255,255,.45); }
-
-.boot-brand .brand-flag { width: 56px; height: 49px; }
-.boot-brand .brand-name { font-size: 38px; text-shadow: 0 2px 5px rgba(0,0,0,.35); }
-.boot-brand .brand-sub { font-size: 11px; }
-
 .boot-prompt {
-  margin: 26px 0 0; color: #fff; font-size: 14px;
-  text-shadow: 0 1px 3px rgba(0,0,0,.4);
+  position: relative; right: 28px;
+  margin: 12px 0 0; white-space: nowrap;
+  color: #fff; font-size: 19px; font-weight: 400; letter-spacing: .25px;
 }
 
+.boot-right {
+  position: absolute; left: 50%; top: 45%;
+  transform: translate(calc(var(--gap) + 1px), -50%);
+  display: flex; align-items: center;
+}
+
+/* The user tile. Idle it is invisible; on hover a blue wash fades in from
+   the left with a hairline border, and the frame and title turn gold. */
 .boot-user {
-  display: flex; align-items: center; gap: 12px;
-  padding: 10px 16px; border-radius: 5px; transition: background .15s;
+  position: relative; z-index: 0; overflow: hidden;
+  display: flex; align-items: flex-start;
+  min-width: 260px; margin: 20px 0; padding: 10px 18px 10px 10px;
+  border-radius: 6px; text-align: left;
+  touch-action: manipulation;
 }
-.boot-user:hover, .boot-user:focus-visible { background: rgba(255,255,255,.14); outline: none; }
+.boot-user::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #113fa6, #194db8 40%, #587cdb);
+  opacity: 0;
+}
+.boot-user::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  border: 1px solid rgba(186,215,248,.55); border-radius: inherit;
+  -webkit-mask-image: linear-gradient(90deg, #000 0, #000 42%, transparent 92%);
+          mask-image: linear-gradient(90deg, #000 0, #000 42%, transparent 92%);
+  opacity: 0;
+}
 .boot-user-pic {
-  width: 58px; height: 58px; display: block; flex: 0 0 58px;
-  border: 3px solid #e8f0ff; border-radius: 3px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.4); overflow: hidden; background: #cfe0ff;
+  display: block; flex: 0 0 auto; width: 70px; height: 70px;
+  border: 3px solid #fff; border-radius: 3px; overflow: hidden;
+  box-shadow: 1px 1px 0 rgba(0,0,0,.06), 1px 2px 3px rgba(0,0,0,.14);
 }
-.boot-user-pic svg { width: 100%; height: 100%; display: block; }
-.boot-user-meta { display: flex; flex-direction: column; align-items: flex-start; }
+.boot-user-meta { display: block; margin: 11px 0 0 14px; }
 .boot-user-name {
-  color: #fff; font-size: 21px; font-weight: 700; letter-spacing: .5px;
-  text-shadow: 0 2px 4px rgba(0,0,0,.45);
+  display: block; margin: 0 0 2px;
+  color: #fff; font-size: 26px; font-weight: 500; line-height: 1; letter-spacing: .25px;
+  text-shadow: 0 1px 1px rgba(0,0,0,.14);
 }
-.boot-user-role { color: #d3e3ff; font-size: 11px; font-weight: 700; }
+.boot-user-role {
+  display: block; margin-left: 2px;
+  color: #000080; font-size: 13px; font-weight: 700; line-height: 1.2;
+}
+
+.boot-user:hover::before, .boot-user:hover::after,
+.boot-user:focus-visible::before, .boot-user:focus-visible::after,
+.boot-user:active::before, .boot-user:active::after { opacity: .92; }
+.boot-user:hover .boot-user-pic,
+.boot-user:focus-visible .boot-user-pic,
+.boot-user:active .boot-user-pic {
+  border-color: #fdbd32;
+  box-shadow: 1px 1px 0 rgba(0,0,0,.08), 1px 2px 3px rgba(0,0,0,.18);
+}
+.boot-user:hover .boot-user-role,
+.boot-user:focus-visible .boot-user-role,
+.boot-user:active .boot-user-role { color: #fdbd32; }
+.boot-user:focus-visible { outline: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  .boot-user::before, .boot-user::after { transition: opacity 70ms linear; }
+  .boot-user-pic { transition: border-color 70ms linear, box-shadow 70ms linear; }
+  .boot-user-role { transition: color 70ms linear; }
+}
 
 .boot-restart {
-  display: flex; align-items: center; gap: 9px;
-  color: #fff; font-size: 12px; text-shadow: 0 1px 2px rgba(0,0,0,.4);
+  position: absolute; left: 50px; bottom: 35px;
+  display: flex; align-items: center;
+  color: #eff1ed; font-size: 16px; font-weight: 500;
 }
-.boot-restart:hover { text-decoration: underline; }
-.boot-restart-icon { width: 22px; height: 22px; display: block; flex: 0 0 22px; }
+.boot-restart-icon {
+  display: block; width: 32px; height: 32px; margin-right: 8px;
+  opacity: .8; transition: opacity .2s;
+}
 .boot-restart-icon svg { width: 100%; height: 100%; display: block; }
+.boot-restart:hover .boot-restart-icon,
+.boot-restart:focus-visible .boot-restart-icon { opacity: 1; }
 
 .boot-note {
-  margin: 0; text-align: right; color: #cfe0ff; font-size: 11px; line-height: 1.7;
+  position: absolute; right: 50px; bottom: 30px; margin: 0;
+  color: #fff; font-size: 14px; line-height: 1.5; text-align: right;
 }
 
 /* ---------- 3. welcome (after clicking the user tile) ----------
-   Same frame as the login screen with everything but one word removed. */
+   The same frame with everything but one word removed, dead centre. */
 .boot-welcome { display: none; }
 
 .boot.is-welcome .boot-left,
 .boot.is-welcome .boot-right,
-.boot.is-welcome .boot-divider { display: none; }
+.boot.is-welcome .boot-divider,
 .boot.is-welcome .boot-restart,
 .boot.is-welcome .boot-note { visibility: hidden; }
 
 .boot.is-welcome .boot-welcome {
   display: block;
-  flex: 1 1 auto; align-self: center;
-  margin: 0; padding-left: 20%;
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0; white-space: nowrap;
   color: #fff;
   font-size: clamp(34px, 4.4vw, 66px);
   font-weight: 700; font-style: italic; letter-spacing: -.5px;
@@ -169,22 +222,38 @@
 }
 @keyframes welcome-in { from { opacity: 0; } }
 
-/* Thin warm highlight along the top of the footer band, as on the real
-   welcome screen. */
-.boot-bar-bottom::before {
-  content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px;
-  background: linear-gradient(90deg, rgba(255,170,110,.9), rgba(255,170,110,0) 55%);
+/* ---------- smaller screens ---------- */
+@media (max-height: 800px) {
+  .boot { --band: 80px; }
 }
 
+/* Phones: stack the two columns either side of a horizontal rule, as the
+   reference does on touch devices. */
 @media (max-width: 760px) {
-  .boot-body { flex-direction: column; gap: 26px; padding: 0 20px; }
-  .boot-left, .boot-right { align-items: center; justify-content: center; padding: 0; }
-  .boot-divider { width: 62%; height: 1px; margin: 0; }
-  .boot-brand .brand-name { font-size: 30px; }
-  .boot-note { display: none; }
-  .boot.is-welcome .boot-welcome { padding-left: 0; text-align: center; }
-  .splash-brand .brand-name { font-size: 36px; }
-  .splash-brand .brand-flag { width: 58px; height: 50px; }
+  .boot-divider {
+    top: 50%; bottom: auto; left: 50%; width: 70%; height: 2px;
+    transform: translate(-50%, -1px);
+    background: linear-gradient(90deg, rgba(186,215,248,0), #bad7f8 40%, #bad7f8 60%, rgba(186,215,248,0));
+  }
+  .boot-left {
+    top: 50%; left: 50%; align-items: center;
+    transform: translate(-50%, calc(-100% - 28px));
+  }
+  .boot-prompt { right: 0; font-size: 15px; text-align: center; }
+  .boot-right {
+    top: 50%; left: 50%;
+    transform: translate(-50%, 28px);
+  }
+  .boot-user { flex-direction: column; align-items: center; min-width: 0; padding: 14px 18px 16px; }
+  .boot-user-meta { margin: 12px 0 0; text-align: center; }
+  .boot-user-role { margin-left: 0; }
+  .boot-restart { display: none; }
+  .boot-note { right: 0; left: 0; bottom: 30px; text-align: center; }
+
+  .brand-flag { width: 78px; height: 68px; margin-right: 22px; }
+  .brand-name { font-size: 40px; }
+  .brand-sub { font-size: 12px; }
+
   .splash-hint { left: 20px; bottom: 24px; }
   .splash-mark { right: 20px; bottom: 22px; font-size: 16px; }
 }

@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JonahXP</title>
 <meta name="description" content="Jonah — developer portfolio. Desktop apps, machine learning, and embedded systems.">
-<link rel="stylesheet" href="css/base.css?v=9">
-<link rel="stylesheet" href="css/cursors.css?v=9">
-<link rel="stylesheet" href="css/boot.css?v=9">
-<link rel="stylesheet" href="css/desktop.css?v=9">
-<link rel="stylesheet" href="css/window.css?v=9">
-<link rel="stylesheet" href="css/taskbar.css?v=9">
-<link rel="stylesheet" href="css/apps.css?v=9">
+<link rel="stylesheet" href="css/base.css?v=10">
+<link rel="stylesheet" href="css/cursors.css?v=10">
+<link rel="stylesheet" href="css/boot.css?v=10">
+<link rel="stylesheet" href="css/desktop.css?v=10">
+<link rel="stylesheet" href="css/window.css?v=10">
+<link rel="stylesheet" href="css/taskbar.css?v=10">
+<link rel="stylesheet" href="css/apps.css?v=10">
 </head>
 <body class="is-booting">
 
@@ -27,8 +27,6 @@
 
 <!-- 2. Login / welcome screen -->
 <div id="boot" class="boot" hidden>
-  <div class="boot-bar boot-bar-top"></div>
-
   <div class="boot-body">
     <p class="boot-welcome" aria-live="polite">welcome</p>
 
@@ -37,10 +35,10 @@
       <p class="boot-prompt">To begin, click on Jonah to log in</p>
     </div>
 
-    <div class="boot-divider"></div>
+    <div class="boot-divider" aria-hidden="true"></div>
 
     <div class="boot-right">
-      <button class="boot-user" id="bootUser">
+      <button class="boot-user" id="bootUser" aria-label="Log in as Jonah">
         <span class="boot-user-pic" id="bootPic"></span>
         <span class="boot-user-meta">
           <span class="boot-user-name">Jonah</span>
@@ -50,16 +48,14 @@
     </div>
   </div>
 
-  <div class="boot-bar boot-bar-bottom">
-    <button class="boot-restart" id="bootRestart">
-      <span class="boot-restart-icon" id="bootRestartIcon"></span>
-      Restart JonahXP
-    </button>
-    <p class="boot-note">
-      After you log on, the desktop is yours to explore.<br>
-      Every window is a real project.
-    </p>
-  </div>
+  <button class="boot-restart" id="bootRestart">
+    <span class="boot-restart-icon" id="bootRestartIcon"></span>
+    Restart JonahXP
+  </button>
+  <p class="boot-note">
+    After you log on, the desktop is yours to explore.<br>
+    Every window is a real project.
+  </p>
 </div>
 
 <!-- 3. Desktop -->
@@ -84,16 +80,17 @@
   <div class="start-menu" id="startMenu" hidden></div>
 </div>
 
-<script src="js/icons.js?v=9"></script>
-<script src="js/brand.js?v=9"></script>
-<script src="js/audio.js?v=9"></script>
-<script src="js/data.js?v=9"></script>
-<script src="js/windows.js?v=9"></script>
-<script src="js/apps.js?v=9"></script>
-<script src="js/desktop.js?v=9"></script>
-<script src="js/taskbar.js?v=9"></script>
-<script src="js/startmenu.js?v=9"></script>
-<script src="js/boot.js?v=9"></script>
-<script src="js/main.js?v=9"></script>
+<script src="js/icons.js?v=10"></script>
+<script src="js/brand.js?v=10"></script>
+<script src="js/avatar.js?v=10"></script>
+<script src="js/audio.js?v=10"></script>
+<script src="js/data.js?v=10"></script>
+<script src="js/windows.js?v=10"></script>
+<script src="js/apps.js?v=10"></script>
+<script src="js/desktop.js?v=10"></script>
+<script src="js/taskbar.js?v=10"></script>
+<script src="js/startmenu.js?v=10"></script>
+<script src="js/boot.js?v=10"></script>
+<script src="js/main.js?v=10"></script>
 </body>
 </html>

@@ -36,7 +36,7 @@
     [...left, ...right].forEach(it => { if (it.run) registry[it.key] = it.run; });
 
     menu.innerHTML =
-      '<div class="sm-head"><span class="sm-head-pic">' + I.avatar() + '</span>' +
+      '<div class="sm-head"><span class="sm-head-pic">' + XPAvatar.tile() + '</span>' +
       '<span class="sm-head-name">' + profile.name + '</span></div>' +
       '<div class="sm-cols">' +
         '<div class="sm-col sm-col-left">' + left.map(item).join('') + '</div>' +

@@ -87,7 +87,7 @@
       const card = el('button', 'card', `
         <span class="card-thumb">${p.thumb()}<span class="card-badge">${p.badge}</span></span>
         <span class="card-meta">
-          <span class="card-avatar">${I.avatar()}</span>
+          <span class="card-avatar">${XPAvatar.tile({ still: true })}</span>
           <span class="card-meta-text">
             <span class="card-title">${p.title}</span>
             <span class="card-sub">${p.tagline}<br>${p.meta}</span>
