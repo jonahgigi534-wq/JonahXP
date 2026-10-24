@@ -126,7 +126,7 @@
       <div class="bc-hotbar">${slots}</div>
       <div class="bc-overlay">
         <div class="bc-card">
-          <h1>BlockCraft</h1>
+          <h1>Minecraft</h1>
           <p class="bc-go">Click to play</p>
           <ul>
             <li><b>W A S D</b> walk, <b>Shift</b> sprint, <b>Space</b> jump</li>
