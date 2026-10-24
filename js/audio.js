@@ -143,7 +143,7 @@
       bell(1244.51, 2.55, 2.4, 0.07, room);   // Eb6
       bell(1567.98, 2.80, 2.0, 0.035, room);  // G6, shimmer
     },
-    /* BlockCraft: a dull crunch for digging, a soft knock for placing. */
+    /* Minecraft: a dull crunch for digging, a soft knock for placing. */
     dig() {
       voice(130, 0, 0.09, 0.12, 'square');
       voice(92, 0.02, 0.12, 0.09, 'triangle');
