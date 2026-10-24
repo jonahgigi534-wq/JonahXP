@@ -387,6 +387,19 @@
     };
   }
 
+  /* ---------------- BlockCraft ---------------- */
+  function gameView() {
+    return {
+      title: 'BlockCraft',
+      address: 'BlockCraft',
+      render(root, api) {
+        const box = el('div', 'bc');
+        root.appendChild(box);
+        XPGame.mount(box, api);
+      }
+    };
+  }
+
   /* ---------------- launchers ---------------- */
   const apps = {
     about: () => window.XPWM.open({
@@ -418,6 +431,14 @@
     resume: () => window.XPWM.open({
       id: 'resume', title: 'Resume.txt - Notepad', icon: 'pdf', chrome: 'simple',
       width: 640, height: 560, statusRight: 'Notepad', view: resumeView()
+    }),
+
+    game: () => window.XPWM.open({
+      id: 'game', title: 'BlockCraft', icon: 'blocks', chrome: 'simple',
+      menu: ['Game', 'Help'],
+      toolbar: [{ id: 'newworld', label: 'New World', icon: 'blocks' }],
+      onTool: (id) => { if (id === 'newworld') XPGame.newWorld(); },
+      width: 860, height: 600, statusRight: 'BlockCraft', view: gameView()
     }),
 
     /* Opens My Projects and jumps straight to one project. */

@@ -10,7 +10,9 @@
     { icon: 'mail',  title: 'Contact Me',  sub: 'Send me a message', bold: true, run: () => XPApps.contact() },
     { sep: true },
     { icon: 'user',  title: 'About Me',  run: () => XPApps.about() },
-    { icon: 'pdf',   title: 'My Resume', run: () => XPApps.resume() }
+    { icon: 'pdf',   title: 'My Resume', run: () => XPApps.resume() },
+    { sep: true },
+    { icon: 'blocks', title: 'BlockCraft', sub: 'A little block game', run: () => XPApps.game() }
   ];
 
   function build() {

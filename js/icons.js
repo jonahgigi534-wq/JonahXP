@@ -160,7 +160,17 @@
     <circle cx="32" cy="40" r="4" fill="#20283a"/>
     <path d="M20 52h24" stroke="#a4adbd" stroke-width="2.4" stroke-linecap="round"/>`);
 
+  /* Isometric grass block, for BlockCraft. */
+  const blocks = () => wrap('0 0 48 48', `
+    <path d="M24 5 43 15 24 25 5 15z" fill="#6cb43f" stroke="#2f5d17" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M5 15 24 25v19L5 34z" fill="#8a6343" stroke="#3f2b1b" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M43 15 24 25v19l19-10z" fill="#6f4f35" stroke="#3f2b1b" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M5 15 24 25l0 5-3.5-1.8v2.6L17 29l0-2.4-4-2v3l-3.5-1.8V22L5 20z" fill="#5c9c33"/>
+    <path d="M43 15 24 25v5l4-2v2.5l3.5-1.8V26l4-2v2.8L39 25v-3l4-2z" fill="#4c8a29"/>
+    <path d="M14 34l3 1.5M10 27l2 1M33 34l3-1.5M30 40l2.5-1.2" stroke="#5d4330" stroke-width="1.6" stroke-linecap="round"/>`);
+
   window.XPIcons = {
+    blocks,
     home, star, theme, caret, search, collapse, tile, dot, aboutCode, aboutGauge,
     flag, avatar, user, globe, pdf, mail, folder, terminal,
     closeX, arrow, go, minGlyph, maxGlyph, restoreGlyph, closeGlyph,
