@@ -387,11 +387,11 @@
     };
   }
 
-  /* ---------------- BlockCraft ---------------- */
+  /* ---------------- Minecraft ---------------- */
   function gameView() {
     return {
-      title: 'BlockCraft',
-      address: 'BlockCraft',
+      title: 'Minecraft',
+      address: 'Minecraft',
       render(root, api) {
         const box = el('div', 'bc');
         root.appendChild(box);
@@ -434,11 +434,11 @@
     }),
 
     game: () => window.XPWM.open({
-      id: 'game', title: 'BlockCraft', icon: 'blocks', chrome: 'simple',
+      id: 'game', title: 'Minecraft', icon: 'blocks', chrome: 'simple',
       menu: ['Game', 'Help'],
       toolbar: [{ id: 'newworld', label: 'New World', icon: 'blocks' }],
       onTool: (id) => { if (id === 'newworld') XPGame.newWorld(); },
-      width: 860, height: 600, statusRight: 'BlockCraft', view: gameView()
+      width: 860, height: 600, statusRight: 'Minecraft', view: gameView()
     }),
 
     /* Opens My Projects and jumps straight to one project. */
