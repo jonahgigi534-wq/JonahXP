@@ -12,7 +12,7 @@
     { icon: 'user',  title: 'About Me',  run: () => XPApps.about() },
     { icon: 'pdf',   title: 'My Resume', run: () => XPApps.resume() },
     { sep: true },
-    { icon: 'blocks', title: 'BlockCraft', sub: 'A little block game', run: () => XPApps.game() }
+    { icon: 'blocks', title: 'Minecraft', sub: 'A little block game', run: () => XPApps.game() }
   ];
 
   function build() {
