@@ -147,7 +147,7 @@
     const nameEl = root.querySelector('.bc-name');
     const gl = canvas.getContext('webgl', { antialias: false });
     if (!gl) {
-      root.querySelector('.bc-go').textContent = 'This browser cannot run WebGL, so BlockCraft cannot start.';
+      root.querySelector('.bc-go').textContent = 'This browser cannot run WebGL, so Minecraft cannot start.';
       return null;
     }
 
