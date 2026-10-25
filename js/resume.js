@@ -1,5 +1,5 @@
-/* My Resume, shown like XP's picture viewer: a printed page on a grey
-   backdrop. The page is laid out at letter size (816px wide) and scaled to
+/* My Resume, shown like XP's picture viewer: a printed page (styled after
+   the Jake Gutierrez LaTeX resume) on a grey backdrop. The page is laid out at letter size (816px wide) and scaled to
    fit the window; Zoom, or a click on the page, shows it full size and
    keeps the clicked spot under the pointer. Save prints just the page, so
    the browser's "Save as PDF" gives a clean copy. */
@@ -11,57 +11,44 @@
 
   const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-  function sideMarkup(r) {
-    const contact = r.contact.map(c => `<li>${esc(c)}</li>`).join('');
-    const groups = r.side.map(g => `
-      <section class="rs-side-group">
-        <h3>${esc(g.heading)}</h3>
-        <ul>${g.items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
-      </section>`).join('');
-    return `
-      <aside class="rs-side">
-        <div class="rs-photo">${XPAvatar.tile({ still: true })}</div>
-        <section class="rs-side-group"><h3>Contact</h3><ul>${contact}</ul></section>
-        ${groups}
-      </aside>`;
-  }
+  /* Small inline glyphs for the contact line (envelope, globe). */
+  const GLYPH = {
+    mail: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M1 3.5h14v9H1zm1.3 1.2v.2L8 8.6l5.7-3.7v-.2zM2.3 6.3v5h11.4v-5L8 10z"/></svg>',
+    globe: '<svg viewBox="0 0 16 16" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="6.3"/><ellipse cx="8" cy="8" rx="2.8" ry="6.3"/><path d="M1.8 8h12.4M2.8 4.8h10.4M2.8 11.2h10.4"/></g></svg>'
+  };
 
-  const heading = (text) => `<h2 class="rs-h"><span>${esc(text)}</span></h2>`;
-  const when = (w) => (w ? `<span class="rs-when">${esc(w)}</span>` : '');
+  const section = (title, body) => `<section class="rs-sec"><h2>${esc(title)}</h2>${body}</section>`;
+  const bullets = (items) => `<ul class="rs-bullets">${items.map(b => `<li>${esc(b)}</li>`).join('')}</ul>`;
 
-  function mainMarkup(r) {
-    const jobs = r.experience.map(j => `
-      <div class="rs-item">
-        <div class="rs-row"><strong>${esc(j.role)}</strong>${when(j.when)}</div>
-        <div class="rs-org">${esc(j.org)}</div>
-        <ul class="rs-bullets">${j.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
-      </div>`).join('');
-    const projects = r.projects.map(p => `
-      <div class="rs-item rs-item-tight">
-        <div class="rs-row"><strong>${esc(p.name)}</strong>${when(p.when)}</div>
-        <p>${esc(p.text)}</p>
-      </div>`).join('');
-    const school = r.education.map(e => `
-      <div class="rs-item rs-item-tight">
-        <div class="rs-row"><strong>${esc(e.name)}</strong>${when(e.when)}</div>
-        <div class="rs-org">${esc(e.detail)}</div>
-        <p>${esc(e.note)}</p>
-      </div>`).join('');
-    return `
-      <main class="rs-main">
-        <h2 class="rs-h rs-title"><span>${esc(r.title)}</span></h2>
-        <p class="rs-summary">${esc(r.summary)}</p>
-        ${heading('Work Experience')}${jobs}
-        ${heading('Independent Projects')}${projects}
-        ${heading('Education')}${school}
-      </main>`;
-  }
+  /* Two-line entry: bold name and date, then italic role and place. */
+  const entry = (name, right, sub, subRight, list) => `
+    <div class="rs-entry">
+      <div class="rs-line"><strong>${esc(name)}</strong><strong>${esc(right || '')}</strong></div>
+      <div class="rs-line rs-sub"><em>${esc(sub || '')}</em><em>${esc(subRight || '')}</em></div>
+      ${list ? bullets(list) : ''}
+    </div>`;
 
   function pageMarkup(r) {
+    const contact = r.contact.map(c =>
+      `<a href="${esc(c.href)}" target="_blank" rel="noopener noreferrer">${GLYPH[c.icon] || ''}<span>${esc(c.text)}</span></a>`).join('');
+    const projects = r.projects.map(p => `
+      <div class="rs-entry">
+        <div class="rs-line"><span><strong>${esc(p.name)}</strong> | <em>${esc(p.tech)}</em></span><strong>${esc(p.when)}</strong></div>
+        ${bullets(p.bullets)}
+      </div>`).join('');
+    const skills = r.skills.map(s => `<div><strong>${esc(s.label)}</strong>: ${esc(s.items)}</div>`).join('');
+
     return `
       <article class="rs-page">
-        <h1 class="rs-name">${esc(r.name.toUpperCase())}</h1>
-        <div class="rs-body">${sideMarkup(r)}${mainMarkup(r)}</div>
+        <header class="rs-head">
+          <h1 class="rs-name">${esc(r.name)}</h1>
+          <div class="rs-contact">${contact}</div>
+        </header>
+        ${section('Education', r.education.map(e => entry(e.name, e.right, e.sub, e.subRight)).join(''))}
+        ${section('Relevant Coursework', `<ul class="rs-cols">${r.coursework.map(c => `<li>${esc(c)}</li>`).join('')}</ul>`)}
+        ${section('Experience', r.experience.map(x => entry(x.name, x.when, x.role, x.place, x.bullets)).join(''))}
+        ${section('Projects', projects)}
+        ${section('Technical Skills', `<div class="rs-skills">${skills}</div>`)}
       </article>`;
   }
 
