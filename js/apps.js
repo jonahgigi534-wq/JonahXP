@@ -349,32 +349,7 @@
 
   /* ---------------- Resume (Notepad) ---------------- */
   function resumeView() {
-    const text = [
-      '=========================================',
-      ` ${profile.name.toUpperCase()}, ${profile.role.toUpperCase()}`,
-      '=========================================',
-      '',
-      `GitHub : ${profile.github}`,
-      `Email  : ${profile.email}`,
-      '',
-      '-- PROFILE ------------------------------',
-      '',
-      profile.about[0],
-      '',
-      '-- SELECTED PROJECTS --------------------',
-      '',
-      ...projects.flatMap(p => [
-        `${p.title}`,
-        `  ${p.tagline}`,
-        `  Stack: ${p.stack.join(', ')}`,
-        `  Repo : ${p.repo}`,
-        ''
-      ]),
-      '-- SKILLS -------------------------------',
-      '',
-      profile.skills.join(' · '),
-      ''
-    ].join('\n');
+    const text = window.XPData.resume.join('\n');
 
     return {
       title: 'Resume.txt - Notepad',
@@ -430,7 +405,7 @@
 
     resume: () => window.XPWM.open({
       id: 'resume', title: 'Resume.txt - Notepad', icon: 'pdf', chrome: 'simple',
-      width: 640, height: 560, statusRight: 'Notepad', view: resumeView()
+      width: 720, height: 640, statusRight: 'Notepad', view: resumeView()
     }),
 
     game: () => window.XPWM.open({
