@@ -31,7 +31,7 @@ button, a, .dicon, .card, .task-btn, .sm-item, .proj-side-btn,
   cursor: var(--cur-hand), pointer;
 }
 
-input, textarea, .notepad, .win-address-text, .detail-panel p, .about p {
+input, textarea, .win-address-text, .detail-panel p, .about p {
   cursor: var(--cur-text), text;
 }
 

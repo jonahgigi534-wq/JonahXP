@@ -1,0 +1,63 @@
+/* My Resume: picture-viewer window with a letter-size page. */
+.rs-stage {
+  position: absolute; inset: 0; overflow: auto;
+  background: #8a8a8a; padding: 24px 0;
+}
+.rs-frame { position: relative; margin: 0 auto; }
+.rs-page {
+  position: absolute; left: 0; top: 0; width: 816px; transform-origin: 0 0;
+  box-sizing: border-box; padding: 34px 40px 44px;
+  background: #fff; color: #161616; box-shadow: 0 2px 8px rgba(0,0,0,.35);
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif; cursor: zoom-in;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.rs-stage.is-zoomed .rs-page { cursor: zoom-out; }
+
+.rs-name {
+  margin: 0 0 20px; text-align: center; line-height: .92;
+  font: 900 85px/0.92 "Arial Black", "Arial Bold", Gadget, sans-serif; letter-spacing: -3px;
+  white-space: nowrap;
+}
+
+.rs-body { display: flex; border: 2px solid #161616; border-radius: 30px; overflow: hidden; }
+
+.rs-side { flex: 0 0 196px; background: #1c1c1c; color: #f2f2f2; padding: 14px 0 22px; }
+.rs-photo {
+  width: 132px; height: 132px; margin: 0 auto 16px; overflow: hidden;
+  border: 2px solid #46c43a; border-radius: 4px; background: #2a2a2a;
+}
+.rs-photo .avatar { width: 100%; height: 100%; display: block; }
+.rs-side-group { border-top: 1px solid #4a4a4a; padding: 12px 16px 6px; }
+.rs-side-group h3 {
+  margin: 0 0 6px; color: #5cc841; font: italic 400 18px Georgia, "Times New Roman", serif;
+}
+.rs-side-group ul { margin: 0; padding: 0; list-style: none; font-size: 11.5px; line-height: 1.85; }
+.rs-side-group li { overflow-wrap: anywhere; }
+
+.rs-main { flex: 1 1 auto; min-width: 0; padding: 16px 0 18px 18px; }
+.rs-h {
+  display: flex; align-items: center; gap: 10px; margin: 16px 0 8px;
+  font: italic 400 23px Georgia, "Times New Roman", serif; color: #161616;
+}
+.rs-h::after { content: ""; flex: 1 1 auto; height: 1.5px; background: #161616; }
+.rs-title { margin-top: 0; font-size: 30px; }
+.rs-summary { margin: 0 18px 4px 0; font-size: 12.5px; line-height: 1.5; color: #333; }
+.rs-item { margin: 0 18px 12px 0; }
+.rs-item-tight { margin-bottom: 9px; }
+.rs-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.rs-row strong { font-size: 14px; }
+.rs-when { flex: 0 0 auto; font-size: 11.5px; font-weight: 700; color: #6b6b6b; }
+.rs-org { font-size: 12px; font-weight: 700; color: #666; margin-top: 1px; }
+.rs-bullets { margin: 5px 0 0; padding-left: 18px; font-size: 12px; line-height: 1.5; color: #2a2a2a; }
+.rs-bullets li { margin-bottom: 3px; }
+.rs-item p { margin: 2px 0 0; font-size: 12px; line-height: 1.5; color: #2a2a2a; }
+
+/* Save = print just the page. */
+.rs-print { display: none; }
+@media print {
+  @page { size: letter; margin: 0; }
+  body.rs-printing { background: #fff !important; filter: none !important; overflow: visible !important; }
+  body.rs-printing > *:not(.rs-print) { display: none !important; }
+  body.rs-printing .rs-print { display: block; }
+  .rs-print .rs-page { position: static; transform: none; box-shadow: none; cursor: auto; }
+}

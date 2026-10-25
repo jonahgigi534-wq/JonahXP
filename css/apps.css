@@ -267,13 +267,6 @@ a.side-row:hover span:last-child { text-decoration: underline; }
 .contact-row a:hover { text-decoration: underline; }
 .contact-note { padding: 16px 18px; font-size: 12px; line-height: 1.7; color: #333; max-width: 68ch; }
 
-/* ---------- Notepad (resume) ---------- */
-.notepad {
-  min-height: 100%; background: #fff; padding: 10px 12px;
-  font-family: "Lucida Console", "Courier New", monospace; font-size: 12px;
-  line-height: 1.55; color: #000; white-space: pre-wrap; word-break: break-word;
-}
-
 @media (max-width: 620px) {
   .about-side { display: none; }
   .about-main { padding: 20px 18px 30px; }

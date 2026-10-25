@@ -169,7 +169,29 @@
     <path d="M43 15 24 25v5l4-2v2.5l3.5-1.8V26l4-2v2.8L39 25v-3l4-2z" fill="#4c8a29"/>
     <path d="M14 34l3 1.5M10 27l2 1M33 34l3-1.5M30 40l2.5-1.2" stroke="#5d4330" stroke-width="1.6" stroke-linecap="round"/>`);
 
+  /* Picture-viewer toolbar (My Resume). */
+  const zoom = () => wrap('0 0 24 24', `
+    <circle cx="10" cy="10" r="6.5" fill="#dff0ff" stroke="#2f6fbf" stroke-width="2"/>
+    <path d="M7 10h6M10 7v6" stroke="#2f6fbf" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M15 15l6 6" stroke="#8a5a1c" stroke-width="3.2" stroke-linecap="round"/>`);
+  const save = () => wrap('0 0 24 24', `
+    <rect x="2.5" y="2.5" width="19" height="19" rx="2" fill="#3d63c9" stroke="#1d3a86"/>
+    <rect x="6" y="3" width="12" height="7" fill="#f4f6fb"/>
+    <rect x="14" y="4.2" width="2.2" height="4.4" fill="#3d63c9"/>
+    <rect x="5.5" y="13.5" width="13" height="8" rx="1" fill="#c9d4ee"/>`);
+  const print = () => wrap('0 0 24 24', `
+    <rect x="6" y="2.5" width="12" height="7" fill="#fff" stroke="#777"/>
+    <rect x="2.5" y="9" width="19" height="9" rx="2" fill="#c9c9c9" stroke="#6d6d6d"/>
+    <rect x="6" y="14.5" width="12" height="7" fill="#fff" stroke="#777"/>
+    <circle cx="18" cy="12" r="1" fill="#4caf50"/>`);
+  const contact = () => wrap('0 0 24 24', `
+    <path d="M4 12a8 8 0 0113.7-5.6" fill="none" stroke="#2f8be0" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M18.8 3v4.6h-4.6" fill="none" stroke="#2f8be0" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20 12a8 8 0 01-13.7 5.6" fill="none" stroke="#3faf46" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M5.2 21v-4.6h4.6" fill="none" stroke="#3faf46" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`);
+
   window.XPIcons = {
+    zoom, save, print, contact,
     blocks,
     home, star, theme, caret, search, collapse, tile, dot, aboutCode, aboutGauge,
     flag, avatar, user, globe, pdf, mail, folder, terminal,

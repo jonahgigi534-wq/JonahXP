@@ -14,8 +14,8 @@
 
   /* ---------- markup ---------- */
   /* Toolbar entries: 'sep', 'close', 'back', 'forward', or a tool
-     { id, label, icon } that is passed to opts.onTool when clicked. A tool
-     with no label shows its icon only. */
+     { id, label, icon, disabled? } that is passed to opts.onTool when
+     clicked. A tool with no label shows its icon only. */
   const DEFAULT_TOOLBAR = ['close', 'sep', 'back', 'forward'];
   const DEFAULT_MENU = ['File', 'View', 'Tools', 'Help'];
 
@@ -25,7 +25,7 @@
     if (t === 'back') return `<button class="tb-btn" data-act="back" disabled>${I.arrow('left')}<span>Back</span></button>`;
     if (t === 'forward') return `<button class="tb-btn" data-act="forward" disabled>${I.arrow('right')}<span>Forward</span></button>`;
     const label = t.label ? `<span>${t.label}</span>` : '';
-    return `<button class="tb-btn${t.label ? '' : ' tb-btn-icon'}" data-tool="${t.id}" title="${t.title || t.label}">${I[t.icon] ? I[t.icon]() : ''}${label}</button>`;
+    return `<button class="tb-btn${t.label ? '' : ' tb-btn-icon'}" data-tool="${t.id}" title="${t.title || t.label}"${t.disabled ? ' disabled' : ''}>${I[t.icon] ? I[t.icon]() : ''}${label}</button>`;
   }
 
   function chromeMarkup(opts) {

@@ -148,93 +148,51 @@
     ]
   };
 
-  /* The Resume window's text, laid out for Notepad's monospace font
-     (76 columns). Street address and phone are left off on purpose:
-     this page is public. */
-  const resume = [
-    "                               JONATHAN GIGI",
-    "                               Cypress, Texas",
-    "        jonahgigi534@gmail.com  |  jonahgigi534-wq.github.io/JonahXP",
-    "",
-    "EDUCATION",
-    "----------------------------------------------------------------------------",
-    "Cypress Woods High School                                           3.96 GPA",
-    "Expected Graduation 2029                                   Class Rank: 1/980",
-    "",
-    "RELEVANT COURSEWORK",
-    "----------------------------------------------------------------------------",
-    "AP Physics 1  |  AP Computer Science A  |  AP Precalculus",
-    "",
-    "EXPERIENCE",
-    "----------------------------------------------------------------------------",
-    "NASA Radioisotope Power Systems Contest",
-    "National Semifinalist (1 of 15 Nationwide)",
-    "  - Wrote an essay proposing an original NASA mission powered by",
-    "    radioisotope power systems (RPS); selected as a national semifinalist.",
-    "",
-    "ContractorFlow                                      May 2025 - December 2025",
-    "Founder                                                       Cypress, Texas",
-    "  - On average added $98,000 top line revenue over a 2 month period per",
-    "    client.",
-    "  - Implemented an AI lead nurturing system using OpenAI/Twilio SMS APIs to",
-    "    automate contractors' sales.",
-    "  - Ran Meta ad campaigns generating inbound leads for roofing contractors",
-    "    in Dallas-Fort Worth, and Houston.",
-    "",
-    "Key Club                                                             Present",
-    "Webmaster                                                     Cypress, Texas",
-    "  - Built a Python reminder system that tracks volunteer hours for 1,000+",
-    "    students and sends weekly automated alerts.",
-    "",
-    "Future Business Leaders of America (FBLA)               April 2026 - Present",
-    "Head of Membership                                            Cypress, Texas",
-    "  - Built and managed the chapter's membership hub, tracking member points",
-    "    and participation through Google App Scripts automations.",
-    "",
-    "Lone Star College                                    August - September 2026",
-    "Lead Instructor & Java Curriculum Developer                   Houston, Texas",
-    "  - Wrote original Codeforces-style competitive programming problems and",
-    "    created Java curriculum materials.",
-    "",
-    "PROJECTS",
-    "----------------------------------------------------------------------------",
-    "Helios: Solar Flare Prediction Platform                       2026 - Present",
-    "  Python, Machine Learning, MLOps",
-    "  - Developing a live web app with an AI model that predicts solar flares,",
-    "    for the ISEF-affiliated Houston science fair.",
-    "  - Built a continuous-training (MLOps) pipeline that ingests, cleans, and",
-    "    adapts to messy real-world data.",
-    "",
-    "Membership Management App for FBLA                                  May 2026",
-    "  SQLite, Express.js, React.js, Node.js",
-    "  - Developed a full-stack membership hub that tracks member points and",
-    "    supports admin CSV uploads.",
-    "",
-    "Embedded Traffic Control System",
-    "  Raspberry Pi Pico W, MicroPython",
-    "  - Built an ultrasonic-sensor traffic controller using state machine logic,",
-    "    non-blocking control, LEDs, and an LCD.",
-    "",
-    "Vital Signs Detector",
-    "  ESP32-S3, Sensors",
-    "  - Prototyped an ESP32-S3 device that reads and reports vital signs from",
-    "    on-board sensors.",
-    "",
-    "Cryptocurrency Trading Bot                                     November 2025",
-    "  Python, Coinbase API",
-    "  - Created a Bitcoin trading bot that executes buy/sell decisions on",
-    "    Coinbase data using an SMA crossover strategy.",
-    "  - Added trend and sideways-market filters, stop-loss and take-profit",
-    "    rules, and position sizing to manage risk.",
-    "",
-    "TECHNICAL SKILLS",
-    "----------------------------------------------------------------------------",
-    "Languages: Java, Python, JavaScript, HTML/CSS, SQL",
-    "Developer Tools: VS Code, IntelliJ, Claude Code, Google Antigravity,",
-    "  Git/GitHub, Framer",
-    "Technologies/Frameworks: React.js, Node.js, Express.js, OpenAI API, Twilio",
-    "  API, Linux, Raspberry Pi, ESP32"
-  ];
+  /* My Resume: laid out as a printed page by js/resume.js. Street address
+     and phone are left off on purpose: this page is public. */
+  const resume = {
+    name: 'Jonathan Gigi',
+    title: 'Student Developer',
+    summary: 'High school developer building machine learning, embedded and full-stack projects, from solar flare forecasting to automated sales tools for small businesses.',
+    contact: ['Cypress, Texas', 'jonahgigi534@gmail.com', 'jonahgigi534-wq.github.io/JonahXP'],
+    side: [
+      { heading: 'Languages', items: ['Java', 'Python', 'JavaScript', 'HTML / CSS', 'SQL'] },
+      { heading: 'Software/Tools', items: ['VS Code', 'IntelliJ', 'Claude Code', 'Google Antigravity', 'Git / GitHub', 'Framer'] },
+      { heading: 'Frameworks', items: ['React.js', 'Node.js', 'Express.js', 'OpenAI API', 'Twilio API', 'Linux', 'Raspberry Pi', 'ESP32'] }
+    ],
+    experience: [
+      { role: 'Founder', org: 'ContractorFlow, Cypress, Texas', when: '2025',
+        bullets: [
+          'On average added $98,000 top line revenue over a 2 month period per client.',
+          "Implemented an AI lead nurturing system using OpenAI/Twilio SMS APIs to automate contractors' sales.",
+          'Ran Meta ad campaigns generating inbound leads for roofing contractors in Dallas-Fort Worth, and Houston.'
+        ] },
+      { role: 'Lead Instructor & Java Curriculum Developer', org: 'Lone Star College, Houston, Texas', when: 'Aug - Sep 2026',
+        bullets: ['Wrote original Codeforces-style competitive programming problems and created Java curriculum materials.'] },
+      { role: 'Head of Membership', org: 'Future Business Leaders of America (FBLA)', when: '2026 - Present',
+        bullets: ["Built and managed the chapter's membership hub, tracking member points and participation through Google App Scripts automations."] },
+      { role: 'Webmaster', org: 'Key Club, Cypress, Texas', when: 'Present',
+        bullets: ['Built a Python reminder system that tracks volunteer hours for 1,000+ students and sends weekly automated alerts.'] },
+      { role: 'National Semifinalist (1 of 15 Nationwide)', org: 'NASA Radioisotope Power Systems Contest', when: '',
+        bullets: ['Wrote an essay proposing an original NASA mission powered by radioisotope power systems (RPS).'] }
+    ],
+    projects: [
+      { name: 'Helios: Solar Flare Prediction Platform', when: '2026 - Present',
+        text: 'A live web app with an AI model that predicts solar flares, built for the ISEF-affiliated Houston science fair, with a continuous-training (MLOps) pipeline for messy real-world data.' },
+      { name: 'Membership Management App for FBLA', when: '2026',
+        text: 'Full-stack membership hub (SQLite, Express, React, Node) that tracks member points and supports admin CSV uploads.' },
+      { name: 'Embedded Traffic Control System', when: '',
+        text: 'Ultrasonic-sensor traffic controller on a Raspberry Pi Pico W, using state machine logic, non-blocking control, LEDs and an LCD.' },
+      { name: 'Vital Signs Detector', when: '',
+        text: 'ESP32-S3 prototype that reads and reports vital signs from on-board sensors.' },
+      { name: 'Cryptocurrency Trading Bot', when: '2025',
+        text: 'Bitcoin bot on Coinbase data using an SMA crossover, with trend and sideways-market filters, stop-loss, take-profit and position sizing.' }
+    ],
+    education: [
+      { name: 'Cypress Woods High School', detail: '3.96 GPA, Class Rank 1/980', when: 'Class of 2029',
+        note: 'AP Physics 1, AP Computer Science A, AP Precalculus' }
+    ]
+  };
 
   window.XPData = Object.freeze({ projects, filters, profile, resume });
 })();

@@ -1,6 +1,6 @@
 /* The windowed "applications": About, My Projects (grid + detail),
-   Contact and Resume. Each app hands the window manager a view
-   object of the shape { title, address, render(el, api) }. */
+   Contact, Resume (see resume.js) and the game. Each app hands the
+   window manager a view object of the shape { title, address, render(el, api) }. */
 (function () {
   const I = window.XPIcons;
   const { projects, filters, profile } = window.XPData;
@@ -347,21 +347,6 @@
     };
   }
 
-  /* ---------------- Resume (Notepad) ---------------- */
-  function resumeView() {
-    const text = window.XPData.resume.join('\n');
-
-    return {
-      title: 'Resume.txt - Notepad',
-      address: 'Resume.txt',
-      render(root) {
-        const page = el('div', 'notepad');
-        page.textContent = text;
-        root.appendChild(page);
-      }
-    };
-  }
-
   /* ---------------- Minecraft ---------------- */
   function gameView() {
     return {
@@ -404,8 +389,14 @@
     }),
 
     resume: () => window.XPWM.open({
-      id: 'resume', title: 'Resume.txt - Notepad', icon: 'pdf', chrome: 'simple',
-      width: 720, height: 640, statusRight: 'Notepad', view: resumeView()
+      id: 'resume', title: 'My Resume', icon: 'pdf', chrome: 'simple',
+      menu: ['File', 'View', 'Help'],
+      toolbar: [{ id: 'zoom', label: 'Zoom', icon: 'zoom' }, 'sep',
+        { id: 'save', label: 'Save', icon: 'save' },
+        { id: 'print', label: 'Print', icon: 'print', disabled: true }, 'sep',
+        { id: 'contact', label: 'Contact Me', icon: 'contact' }],
+      onTool: (id) => window.XPResume.tool(id),
+      width: 620, height: 760, statusRight: '', view: window.XPResume.view()
     }),
 
     game: () => window.XPWM.open({
