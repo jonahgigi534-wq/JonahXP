@@ -114,7 +114,7 @@
     fullName: 'Jonathan Gigi',
     role: 'Developer',
     github: 'https://github.com/jonahgigi534-wq',
-    email: 'gigijoseph10@gmail.com',
+    email: 'jonahgigi534@gmail.com',
     linkedin: '',
     about: [
       'I build desktop apps, machine-learning systems and embedded hardware, usually start to finish. I like projects where the hard part is actually hard: editing PDFs with no cloud behind them, forecasting solar flares without the model peeking at the answers, finding people in a room with nothing but WiFi.',
